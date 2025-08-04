@@ -15,8 +15,7 @@ type
     Disciplinas: TLabel;
     Turmas: TLabel;
     Matriculas: TLabel;
-    DigitarOpção: TEdit;
-    Label1: TLabel;
+    CliqueOpção: TLabel;
   private
     { Private declarations }
   public
@@ -29,5 +28,7 @@ var
 implementation
 
 {$R *.dfm}
+
+
 
 end.

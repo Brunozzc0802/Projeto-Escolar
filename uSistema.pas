@@ -6,7 +6,6 @@ interface
     protected
       Nome:String;
       Codigo:Integer;
-
       public
       function getNome:String;
       procedure setNome(aNome:String);
