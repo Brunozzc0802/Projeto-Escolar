@@ -129,13 +129,13 @@
     object Label1: TLabel
       Left = 112
       Top = 393
-      Width = 320
-      Height = 23
+      Width = 292
+      Height = 25
       Caption = 'Digite a op'#231#227'o que deseja acessar'
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -19
-      Font.Name = 'Arial'
+      Font.Name = 'Segoe UI Semibold'
       Font.Style = [fsBold, fsItalic]
       ParentFont = False
     end

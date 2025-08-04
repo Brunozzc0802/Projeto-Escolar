@@ -1,4 +1,4 @@
-unit uPrincipal;
+unit uFormEstudantes;
 
 interface
 
@@ -7,16 +7,13 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
 
 type
-  TForm1 = class(TForm)
+  TForm2 = class(TForm)
     Painel: TPanel;
     Titulo: TLabel;
-    Estudantes: TLabel;
-    Profesores: TLabel;
-    Disciplinas: TLabel;
-    Turmas: TLabel;
-    Matriculas: TLabel;
-    DigitarOpção: TEdit;
-    Label1: TLabel;
+    DigiteNomeTitulo: TLabel;
+    DigitarNome: TEdit;
+    DigiteCodigo: TLabel;
+    DigitarCodigo: TEdit;
   private
     { Private declarations }
   public
@@ -24,7 +21,7 @@ type
   end;
 
 var
-  Form1: TForm1;
+  Form2: TForm2;
 
 implementation
 

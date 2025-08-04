@@ -11,12 +11,6 @@ type
     Painel: TPanel;
     Titulo: TLabel;
     Estudantes: TLabel;
-    Profesores: TLabel;
-    Disciplinas: TLabel;
-    Turmas: TLabel;
-    Matriculas: TLabel;
-    DigitarOpção: TEdit;
-    Label1: TLabel;
   private
     { Private declarations }
   public

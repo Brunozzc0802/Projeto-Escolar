@@ -5,29 +5,34 @@ interface
   type TClassePai = class
     protected
       Nome:String;
-      Cpf:String;
+      Codigo:Integer;
 
       public
       function getNome:String;
       procedure setNome(aNome:String);
-      function getCpf:String;
-      procedure setCpf(aCpf:String);
-      constructor Create (aNome, aCpf:String);
+      function getCodigo:Integer;
+      procedure setCodigo(aCodigo:Integer);
+
+      constructor Create (aCodigo:Integer; aNome:String);
   end;
 
 implementation
 
 { TClassePai }
 
-constructor TClassePai.Create(aNome, aCpf: String);
+//Construtor
+
+constructor TClassePai.Create(aCodigo: Integer; aNome: String);
   begin
-    Nome := aNome;
-    Cpf := aCpf;
+    Self.Nome := aNome;
+    Self.Codigo := aCodigo;
   end;
 
-function TClassePai.getCpf: String;
+
+  //Funções
+function TClassePai.getCodigo: Integer;
   begin
-    Result := Self.Cpf
+    Result := Self.Codigo
   end;
 
 function TClassePai.getNome: String;
@@ -35,9 +40,11 @@ function TClassePai.getNome: String;
     Result := Self.Nome
   end;
 
-procedure TClassePai.setCpf(aCpf: String);
+
+  //Procedures
+procedure TClassePai.setCodigo(aCodigo: Integer);
   begin
-    Self.Cpf := aCpf;
+    Self.Codigo := aCodigo;
   end;
 
 procedure TClassePai.setNome(aNome: String);

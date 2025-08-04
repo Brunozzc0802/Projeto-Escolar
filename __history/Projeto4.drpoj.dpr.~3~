@@ -4,8 +4,7 @@ uses
   Vcl.Forms,
   uPrincipal in 'uPrincipal.pas' {Form1},
   uEstudante in 'uEstudante.pas',
-  uSistema in 'uSistema.pas',
-  uFormEstudantes in 'uFormEstudantes.pas' {Form2};
+  uSistema in 'uSistema.pas';
 
 {$R *.res}
 
@@ -13,6 +12,5 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TForm1, Form1);
-  Application.CreateForm(TForm2, Form2);
   Application.Run;
 end.
