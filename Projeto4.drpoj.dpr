@@ -1,0 +1,16 @@
+program Projeto4.drpoj;
+
+uses
+  Vcl.Forms,
+  uPrincipal in 'uPrincipal.pas' {Form1},
+  uEstudante in 'uEstudante.pas',
+  uSistema in 'uSistema.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.
