@@ -2,7 +2,6 @@ unit uEstudante;
 
 interface
 
-  uses uSistema;
 
   type TEstudante = class
     NomeEstudante:String;

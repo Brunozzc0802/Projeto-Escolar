@@ -134,6 +134,8 @@
         </DCCReference>
         <DCCReference Include="uProfessor.pas"/>
         <DCCReference Include="uTurmas.pas"/>
+        <DCCReference Include="uDisciplinas.pas"/>
+        <DCCReference Include="uMatriculas.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

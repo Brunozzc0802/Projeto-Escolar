@@ -6,7 +6,9 @@ uses
   uEstudante in 'uEstudante.pas',
   uFormEstudantes in 'uFormEstudantes.pas' {FormEstudantes},
   uProfessor in 'uProfessor.pas',
-  uTurmas in 'uTurmas.pas';
+  uTurmas in 'uTurmas.pas',
+  uDisciplinas in 'uDisciplinas.pas',
+  uMatriculas in 'uMatriculas.pas';
 
 {$R *.res}
 
