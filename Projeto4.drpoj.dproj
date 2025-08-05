@@ -128,12 +128,10 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uEstudante.pas"/>
-        <DCCReference Include="uSistema.pas"/>
         <DCCReference Include="uFormEstudantes.pas">
             <Form>FormEstudantes</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="uNomeCpf.pas"/>
         <DCCReference Include="uProfessor.pas"/>
         <DCCReference Include="uTurmas.pas"/>
         <BuildConfiguration Include="Base">

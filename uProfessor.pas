@@ -4,7 +4,7 @@ interface
 
   uses uSistema;
 
-  type TProfessores = class (TCodigo)
+  type TProfessores = class
     NomeProfessor:String;
     CodigoProfessor:Integer;
     Cpf:String;

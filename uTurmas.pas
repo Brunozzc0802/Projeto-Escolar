@@ -4,7 +4,7 @@ interface
 
   uses uSistema,uEstudante,uProfessor;
 
-  type TTurmas = class (TCodigo)
+  type TTurmas = class
     CodigoTurma:Integer;
     CodigoProfessor:Integer;
     CodigoEstudante:Integer;

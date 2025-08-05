@@ -4,9 +4,7 @@ uses
   Vcl.Forms,
   uPrincipal in 'uPrincipal.pas' {Form1},
   uEstudante in 'uEstudante.pas',
-  uSistema in 'uSistema.pas',
   uFormEstudantes in 'uFormEstudantes.pas' {FormEstudantes},
-  uNomeCpf in 'uNomeCpf.pas',
   uProfessor in 'uProfessor.pas',
   uTurmas in 'uTurmas.pas';
 

@@ -4,22 +4,24 @@ interface
 
   uses uSistema;
 
-  type TEstudante = class (TCodigo)
+  type TEstudante = class
     NomeEstudante:String;
-    CodigoEstudante:Integer;
+    Codigo:Integer;
+    function getCodigo:Integer;
+    procedure setCodigo(aCodigo:Integer);
     function getNomeEstudante:String;
-    procedure setNomeEstudante(aNomeEstudante:String);
-    function getCodigoEstudante:Integer;
-    procedure setCodigoEstudante(aCodigoEstudante:Integer);
+    procedure setNome(aNomeEstudante:String);
   end;
 
 implementation
 
 { TEstudante }
 
-function TEstudante.getCodigoEstudante: Integer;
+{ TEstudante }
+
+function TEstudante.getCodigo: Integer;
   begin
-    Result := Self.CodigoEstudante;
+    Result := Self.Codigo;
   end;
 
 function TEstudante.getNomeEstudante: String;
@@ -27,13 +29,14 @@ function TEstudante.getNomeEstudante: String;
     Result := Self.NomeEstudante;
   end;
 
-procedure TEstudante.setCodigoEstudante(aCodigoEstudante: Integer);
+procedure TEstudante.setCodigo(aCodigo: Integer);
   begin
-    Self.CodigoEstudante := aCodigoEstudante;
+    Self.Codigo := aCodigo;
   end;
-procedure TEstudante.setNomeEstudante(aNomeEstudante: String);
+
+procedure TEstudante.setNome(aNomeEstudante: String);
   begin
-    Self.NomeEstudante := aNomeEstudante;
+    Self.NomeEstudante := aNomeEstudante
   end;
 
 end.
