@@ -130,7 +130,7 @@
         <DCCReference Include="uEstudante.pas"/>
         <DCCReference Include="uSistema.pas"/>
         <DCCReference Include="uFormEstudantes.pas">
-            <Form>Form2</Form>
+            <Form>FormEstudantes</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

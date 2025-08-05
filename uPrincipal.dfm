@@ -7,19 +7,27 @@
   ClientWidth = 952
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
+  Font.Color = clGray
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesigned
   TextHeight = 15
   object Painel: TPanel
     Left = 224
     Top = 80
     Width = 513
     Height = 513
+    Cursor = crHandPoint
     Margins.Right = 20
     Color = clMedGray
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
     ParentBackground = False
+    ParentFont = False
     TabOrder = 0
     object Titulo: TLabel
       AlignWithMargins = True
@@ -43,12 +51,52 @@
       ExplicitWidth = 452
     end
     object Estudantes: TLabel
-      Left = 137
-      Top = 99
-      Width = 256
-      Height = 32
-      Margins.Right = 20
-      Caption = ' 1 - Estudantes'#8287#8287#8287#8287
+      AlignWithMargins = True
+      Left = 51
+      Top = 76
+      Width = 411
+      Height = 36
+      Cursor = crHandPoint
+      Margins.Left = 50
+      Margins.Top = 20
+      Margins.Right = 50
+      Margins.Bottom = 400
+      Align = alClient
+      Alignment = taCenter
+      Caption = ' 1 - Estudantes'#8287#8287#8287#8287#8287
+      Color = clMenu
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Verdana'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      Transparent = False
+      OnClick = EstudantesClick
+      OnMouseEnter = EstudantesMouseEnter
+      OnMouseLeave = EstudantesMouseLeave
+      ExplicitLeft = 137
+      ExplicitTop = 99
+      ExplicitWidth = 261
+      ExplicitHeight = 32
+    end
+    object Disciplinas: TLabel
+      AlignWithMargins = True
+      Left = 51
+      Top = 196
+      Width = 411
+      Height = 36
+      Cursor = crHandPoint
+      Margins.Left = 50
+      Margins.Top = 140
+      Margins.Right = 50
+      Margins.Bottom = 280
+      Align = alClient
+      Alignment = taCenter
+      Caption = ' 3 - Disciplinas'#8287#8287#8287#8287#8287#8287
       Color = clMenu
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
@@ -58,13 +106,100 @@
       ParentColor = False
       ParentFont = False
       Transparent = False
+      OnMouseEnter = DisciplinasMouseEnter
+      OnMouseLeave = DisciplinasMouseLeave
+      ExplicitLeft = 137
+      ExplicitTop = 218
+      ExplicitWidth = 263
+      ExplicitHeight = 32
     end
-    object Profesores: TLabel
-      Left = 137
-      Top = 160
-      Width = 232
-      Height = 32
-      Margins.Right = 20
+    object Turmas: TLabel
+      AlignWithMargins = True
+      Left = 51
+      Top = 256
+      Width = 411
+      Height = 36
+      Cursor = crHandPoint
+      Margins.Left = 50
+      Margins.Top = 200
+      Margins.Right = 50
+      Margins.Bottom = 220
+      Align = alClient
+      Alignment = taCenter
+      Caption = ' 4 - Turmas'#12644#12644#12644#8287#8287#8287#8287
+      Color = clMenu
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Verdana'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = False
+      OnMouseEnter = TurmasMouseEnter
+      OnMouseLeave = TurmasMouseLeave
+      ExplicitLeft = 137
+      ExplicitTop = 276
+      ExplicitWidth = 263
+      ExplicitHeight = 32
+    end
+    object Matriculas: TLabel
+      AlignWithMargins = True
+      Left = 51
+      Top = 316
+      Width = 411
+      Height = 36
+      Cursor = crHandPoint
+      Margins.Left = 50
+      Margins.Top = 260
+      Margins.Right = 50
+      Margins.Bottom = 160
+      Align = alClient
+      Alignment = taCenter
+      Caption = ' 5 - Matr'#237'culas'#12644#8287#8287#8287#8287
+      Color = clMenu
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Verdana'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = False
+      OnMouseEnter = MatriculasMouseEnter
+      OnMouseLeave = MatriculasMouseLeave
+      ExplicitLeft = 137
+      ExplicitTop = 334
+      ExplicitWidth = 264
+      ExplicitHeight = 32
+    end
+    object CliqueOpção: TLabel
+      Left = 51
+      Top = 393
+      Width = 430
+      Height = 30
+      Alignment = taCenter
+      Caption = 'Clique Na Op'#231#227'o Que Voc'#234' Deseja Acessar'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clAqua
+      Font.Height = -21
+      Font.Name = 'Segoe UI Black'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Professores: TLabel
+      AlignWithMargins = True
+      Left = 51
+      Top = 136
+      Width = 411
+      Height = 36
+      Cursor = crHandPoint
+      Margins.Left = 50
+      Margins.Top = 80
+      Margins.Right = 50
+      Margins.Bottom = 340
+      Align = alClient
+      Alignment = taCenter
       Caption = ' 2 - Professores'#8287#8287#8287
       Color = clMenu
       Font.Charset = ANSI_CHARSET
@@ -75,70 +210,12 @@
       ParentColor = False
       ParentFont = False
       Transparent = False
-    end
-    object Disciplinas: TLabel
-      Left = 137
-      Top = 218
-      Width = 256
-      Height = 32
-      Margins.Right = 20
-      Caption = ' 3 - Disciplinas'#8287#8287#8287#8287#8287
-      Color = clMenu
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -27
-      Font.Name = 'Verdana'
-      Font.Style = [fsBold]
-      ParentColor = False
-      ParentFont = False
-      Transparent = False
-    end
-    object Turmas: TLabel
-      Left = 137
-      Top = 276
-      Width = 256
-      Height = 32
-      Margins.Right = 20
-      Caption = ' 4 - Turmas'#12644#12644#12644#8287#8287#8287
-      Color = clMenu
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -27
-      Font.Name = 'Verdana'
-      Font.Style = [fsBold]
-      ParentColor = False
-      ParentFont = False
-      Transparent = False
-    end
-    object Matriculas: TLabel
-      Left = 137
-      Top = 334
-      Width = 256
-      Height = 32
-      Margins.Right = 20
-      Caption = ' 5 - Matr'#237'culas'#12644#8287#8287#8287
-      Color = clMenu
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -27
-      Font.Name = 'Verdana'
-      Font.Style = [fsBold]
-      ParentColor = False
-      ParentFont = False
-      Transparent = False
-    end
-    object CliqueOpção: TLabel
-      Left = 80
-      Top = 449
-      Width = 350
-      Height = 23
-      Caption = 'Clique Na Op'#231#227'o Que Deseja Acessar'
-      Font.Charset = 163
-      Font.Color = clWindowText
-      Font.Height = -19
-      Font.Name = 'Arial'
-      Font.Style = [fsBold, fsItalic, fsUnderline]
-      ParentFont = False
+      OnMouseEnter = ProfessoresMouseEnter
+      OnMouseLeave = ProfessoresMouseLeave
+      ExplicitLeft = 137
+      ExplicitTop = 155
+      ExplicitWidth = 259
+      ExplicitHeight = 32
     end
   end
 end

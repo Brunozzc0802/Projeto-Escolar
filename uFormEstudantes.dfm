@@ -1,86 +1,122 @@
-object Form2: TForm2
-  Left = 0
-  Top = 0
-  Caption = 'Form2'
-  ClientHeight = 712
-  ClientWidth = 921
+﻿object FormEstudantes: TFormEstudantes
+  AlignWithMargins = True
+  Left = 102
+  Top = 83
+  Margins.Left = 30
+  Margins.Right = 30
+  Caption = 'FormEstudantes'
+  ClientHeight = 683
+  ClientWidth = 861
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesigned
   TextHeight = 15
-  object Painel: TPanel
-    Left = 232
-    Top = 96
-    Width = 513
+  object PainelEstudantes: TPanel
+    Left = 192
+    Top = 56
+    Width = 529
     Height = 513
     Margins.Right = 20
-    Color = clSilver
+    Color = clMedGray
     ParentBackground = False
     TabOrder = 0
     object Titulo: TLabel
       AlignWithMargins = True
-      Left = 21
+      Left = 51
       Top = 16
-      Width = 491
-      Height = 45
-      Margins.Left = 20
+      Width = 447
+      Height = 37
+      Margins.Left = 50
       Margins.Top = 15
-      Margins.Right = 0
+      Margins.Right = 30
       Align = alTop
-      Caption = 'Formul'#225'rio Cadastro Estudantes'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Alignment = taCenter
+      Caption = 'Menu Estudantes'
+      Color = clFuchsia
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
       Font.Height = -32
-      Font.Name = 'Segoe UI'
+      Font.Name = 'Arial'
+      Font.Style = [fsBold, fsUnderline]
+      ParentColor = False
+      ParentFont = False
+      ExplicitLeft = 129
+      ExplicitWidth = 391
+    end
+    object CliqueOpção: TLabel
+      Left = 97
+      Top = 449
+      Width = 350
+      Height = 23
+      Caption = 'Clique Na Op'#231#227'o Que Deseja Acessar'
+      Font.Charset = 163
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Arial'
+      Font.Style = [fsBold, fsItalic, fsUnderline]
+      ParentFont = False
+    end
+    object AddEstudante: TLabel
+      AlignWithMargins = True
+      Left = 51
+      Top = 76
+      Width = 427
+      Height = 36
+      Margins.Left = 50
+      Margins.Top = 20
+      Margins.Right = 50
+      Margins.Bottom = 400
+      Align = alClient
+      Alignment = taCenter
+      Caption = ' 1 - Adicionar Estudante'#8287
+      Color = clMenu
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Verdana'
       Font.Style = [fsBold]
+      ParentColor = False
       ParentFont = False
-      ExplicitLeft = 31
-      ExplicitWidth = 478
+      ParentShowHint = False
+      ShowHint = True
+      Transparent = False
+      OnMouseEnter = AddEstudanteMouseEnter
+      OnMouseLeave = AddEstudanteMouseLeave
+      ExplicitWidth = 369
+      ExplicitHeight = 32
     end
-    object DigiteNomeTitulo: TLabel
-      Left = 112
-      Top = 80
-      Width = 273
-      Height = 25
-      Caption = 'Digite o Nome Do Estudante:'
+    object VerLista: TLabel
+      AlignWithMargins = True
+      Left = 51
+      Top = 136
+      Width = 427
+      Height = 36
+      Margins.Left = 50
+      Margins.Top = 80
+      Margins.Right = 50
+      Margins.Bottom = 340
+      Align = alClient
+      Alignment = taCenter
+      Caption = ' 2 - Lista De Estudantes'#8287
+      Color = clMenu
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
-      Font.Height = -19
-      Font.Name = 'Ebrima'
-      Font.Style = [fsBold, fsItalic]
+      Font.Height = -27
+      Font.Name = 'Verdana'
+      Font.Style = [fsBold]
+      ParentColor = False
       ParentFont = False
-    end
-    object DigiteCodigo: TLabel
-      Left = 112
-      Top = 177
-      Width = 273
-      Height = 25
-      Caption = 'Digite o Codigo Do Estudante:'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -19
-      Font.Name = 'Ebrima'
-      Font.Style = [fsBold, fsItalic]
-      ParentFont = False
-    end
-    object DigitarNome: TEdit
-      Left = 112
-      Top = 120
-      Width = 273
-      Height = 33
-      TabOrder = 0
-      TextHint = 'Digite o Nome:'
-    end
-    object DigitarCodigo: TEdit
-      Left = 112
-      Top = 222
-      Width = 273
-      Height = 33
-      TabOrder = 1
-      TextHint = 'Digite o Codigo:'
+      ParentShowHint = False
+      ShowHint = True
+      Transparent = False
+      OnMouseEnter = VerListaMouseEnter
+      OnMouseLeave = VerListaMouseLeave
+      ExplicitWidth = 363
+      ExplicitHeight = 32
     end
   end
 end

@@ -7,13 +7,17 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
 
 type
-  TForm2 = class(TForm)
-    Painel: TPanel;
+  TFormEstudantes = class(TForm)
+    PainelEstudantes: TPanel;
     Titulo: TLabel;
-    DigiteNomeTitulo: TLabel;
-    DigitarNome: TEdit;
-    DigiteCodigo: TLabel;
-    DigitarCodigo: TEdit;
+    CliqueOpção: TLabel;
+    AddEstudante: TLabel;
+    VerLista: TLabel;
+    procedure AddEstudanteMouseEnter(Sender: TObject);
+    procedure AddEstudanteMouseLeave(Sender: TObject);
+    procedure VerListaMouseEnter(Sender: TObject);
+    procedure VerListaMouseLeave(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -21,10 +25,31 @@ type
   end;
 
 var
-  Form2: TForm2;
+  FormEstudantes: TFormEstudantes;
 
 implementation
 
 {$R *.dfm}
+
+
+procedure TFormEstudantes.AddEstudanteMouseEnter(Sender: TObject);
+  begin
+    AddEstudante.Font.Color := clBlue;
+  end;
+
+procedure TFormEstudantes.AddEstudanteMouseLeave(Sender: TObject);
+  begin
+    AddEstudante.Font.Color := clBlack;
+  end;
+
+procedure TFormEstudantes.VerListaMouseEnter(Sender: TObject);
+  begin
+    VerLista.Font.Color := clBlue;
+  end;
+
+procedure TFormEstudantes.VerListaMouseLeave(Sender: TObject);
+  begin
+    VerLista.Font.Color := clBlack;
+  end;
 
 end.

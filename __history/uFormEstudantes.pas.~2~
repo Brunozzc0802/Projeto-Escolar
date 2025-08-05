@@ -7,13 +7,13 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
 
 type
-  TFormEstudantes = class(TForm)
-    PainelEstudantes: TPanel;
+  TForm2 = class(TForm)
+    Painel: TPanel;
     Titulo: TLabel;
-    CliqueOpção: TLabel;
-    AddEstudante: TLabel;
-    VerLista: TLabel;
-    procedure AddEstudanteMouseEnter(Sender: TObject);
+    DigiteNomeTitulo: TLabel;
+    DigitarNome: TEdit;
+    DigiteCodigo: TLabel;
+    DigitarCodigo: TEdit;
   private
     { Private declarations }
   public
@@ -21,15 +21,10 @@ type
   end;
 
 var
-  FormEstudantes: TFormEstudantes;
+  Form2: TForm2;
 
 implementation
 
 {$R *.dfm}
-
-procedure TFormEstudantes.AddEstudanteMouseEnter(Sender: TObject);
-  begin
-
-  end;
 
 end.
