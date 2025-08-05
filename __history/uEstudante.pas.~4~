@@ -5,10 +5,7 @@ interface
   uses uSistema;
 
   type TEstudante = class (TCodigo)
-    NomeEstudante:String;
     CodigoEstudante:Integer;
-    function getNomeEstudante:String;
-    procedure setNomeEstudante(aNomeEstudante:String);
     function getCodigoEstudante:Integer;
     procedure setCodigoEstudante(aCodigoEstudante:Integer);
   end;
@@ -22,18 +19,8 @@ function TEstudante.getCodigoEstudante: Integer;
     Result := Self.CodigoEstudante;
   end;
 
-function TEstudante.getNomeEstudante: String;
-  begin
-    Result := Self.NomeEstudante;
-  end;
-
 procedure TEstudante.setCodigoEstudante(aCodigoEstudante: Integer);
   begin
     Self.CodigoEstudante := aCodigoEstudante;
   end;
-procedure TEstudante.setNomeEstudante(aNomeEstudante: String);
-  begin
-    Self.NomeEstudante := aNomeEstudante;
-  end;
-
 end.

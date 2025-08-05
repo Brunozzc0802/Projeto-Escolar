@@ -78,6 +78,8 @@
       OnClick = EstudantesClick
       OnMouseEnter = EstudantesMouseEnter
       OnMouseLeave = EstudantesMouseLeave
+      ExplicitLeft = 137
+      ExplicitTop = 99
       ExplicitWidth = 261
       ExplicitHeight = 32
     end
@@ -106,6 +108,8 @@
       Transparent = False
       OnMouseEnter = DisciplinasMouseEnter
       OnMouseLeave = DisciplinasMouseLeave
+      ExplicitLeft = 137
+      ExplicitTop = 218
       ExplicitWidth = 263
       ExplicitHeight = 32
     end
@@ -134,6 +138,8 @@
       Transparent = False
       OnMouseEnter = TurmasMouseEnter
       OnMouseLeave = TurmasMouseLeave
+      ExplicitLeft = 137
+      ExplicitTop = 276
       ExplicitWidth = 263
       ExplicitHeight = 32
     end
@@ -162,20 +168,22 @@
       Transparent = False
       OnMouseEnter = MatriculasMouseEnter
       OnMouseLeave = MatriculasMouseLeave
+      ExplicitLeft = 137
+      ExplicitTop = 334
       ExplicitWidth = 264
       ExplicitHeight = 32
     end
     object CliqueOpção: TLabel
-      Left = 59
-      Top = 401
-      Width = 396
-      Height = 22
+      Left = 51
+      Top = 393
+      Width = 430
+      Height = 30
       Alignment = taCenter
       Caption = 'Clique Na Op'#231#227'o Que Voc'#234' Deseja Acessar'
       Font.Charset = ANSI_CHARSET
-      Font.Color = clBlack
-      Font.Height = -19
-      Font.Name = 'Arial'
+      Font.Color = clAqua
+      Font.Height = -21
+      Font.Name = 'Segoe UI Black'
       Font.Style = [fsBold]
       ParentFont = False
     end
@@ -204,6 +212,8 @@
       Transparent = False
       OnMouseEnter = ProfessoresMouseEnter
       OnMouseLeave = ProfessoresMouseLeave
+      ExplicitLeft = 137
+      ExplicitTop = 155
       ExplicitWidth = 259
       ExplicitHeight = 32
     end

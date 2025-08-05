@@ -4,22 +4,19 @@ interface
 
   type TCodigo = class
     public
-    Nome:String;
     Codigo:Integer;
     function getCodigo:Integer;
     procedure setCodigo(aCodigo:Integer);
-    function getNome:String;
-    procedure setNome(aNome:String);
-    constructor Create (aNome:String;aCodigo:Integer);
+    constructor Create (aCodigo:Integer);
   end;
 
 implementation
 
- { TCodigo }
 
-constructor TCodigo.Create(aNome: String; aCodigo: Integer);
+{ TCodigo }
+
+constructor TCodigo.Create(aCodigo: Integer);
   begin
-    Nome := aNome;
     Codigo := aCodigo;
   end;
 
@@ -28,19 +25,9 @@ function TCodigo.getCodigo: Integer;
     Result := Self.Codigo;
   end;
 
-function TCodigo.getNome: String;
-  begin
-    Result := Self.Nome;
-  end;
-
 procedure TCodigo.setCodigo(aCodigo: Integer);
   begin
     Self.Codigo := aCodigo;
-  end;
-
-procedure TCodigo.setNome(aNome: String);
-  begin
-    Self.Nome := aNome;
   end;
 
 end.
