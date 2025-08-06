@@ -4,14 +4,16 @@
   Margins.Top = 30
   Caption = 'For'
   ClientHeight = 658
-  ClientWidth = 813
+  ClientWidth = 765
   Color = clBtnFace
+  TransparentColorValue = clSilver
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clGray
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poDesigned
+  OnCreate = FormCreate
   TextHeight = 15
   object PainelInicio: TPanel
     Left = 152
@@ -238,7 +240,7 @@
       Font.Style = [fsBold, fsUnderline]
       ParentColor = False
       ParentFont = False
-      ExplicitLeft = -85
+      ExplicitWidth = 264
     end
     object CliqueNaOpção: TLabel
       Left = 97
@@ -309,10 +311,10 @@
       ParentShowHint = False
       ShowHint = True
       Transparent = False
+      OnClick = VerListaClick
       OnMouseEnter = VerListaMouseEnter
       OnMouseLeave = VerListaMouseLeave
-      ExplicitWidth = 381
-      ExplicitHeight = 32
+      ExplicitLeft = 50
     end
     object VoltarAoMenu: TLabel
       AlignWithMargins = True
@@ -374,7 +376,8 @@
       Font.Style = [fsBold, fsUnderline]
       ParentColor = False
       ParentFont = False
-      ExplicitLeft = 67
+      ExplicitLeft = 26
+      ExplicitTop = 24
     end
     object CliqueOpçãoAcessar: TLabel
       Left = 97
@@ -442,7 +445,6 @@
       OnClick = voltarMenuClick
       OnMouseEnter = voltarMenuMouseEnter
       OnMouseLeave = voltarMenuMouseLeave
-      ExplicitTop = 196
       ExplicitWidth = 292
       ExplicitHeight = 32
     end
@@ -503,6 +505,7 @@
       OnClick = BotaoAdicionarClick
       OnMouseEnter = BotaoAdicionarMouseEnter
       OnMouseLeave = BotaoAdicionarMouseLeave
+      ExplicitWidth = 110
       ExplicitHeight = 25
     end
     object EditNome: TEdit
@@ -538,6 +541,156 @@
       TabOrder = 1
       TextHint = 'Codigo:'
       ExplicitHeight = 23
+    end
+  end
+  object PainelListaEstudantes: TPanel
+    Left = 152
+    Top = 80
+    Width = 512
+    Height = 513
+    Margins.Right = 20
+    Color = clMedGray
+    ParentBackground = False
+    TabOrder = 3
+    Visible = False
+    object tituloLista: TLabel
+      AlignWithMargins = True
+      Left = 51
+      Top = 16
+      Width = 430
+      Height = 37
+      Margins.Left = 50
+      Margins.Top = 15
+      Margins.Right = 30
+      Align = alTop
+      Alignment = taCenter
+      Caption = 'Lista De Estudantes'
+      Color = clFuchsia
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -32
+      Font.Name = 'Arial'
+      Font.Style = [fsBold, fsUnderline]
+      ParentColor = False
+      ParentFont = False
+      ExplicitWidth = 308
+    end
+    object VoltarMenuLista: TLabel
+      AlignWithMargins = True
+      Left = 51
+      Top = 446
+      Width = 410
+      Height = 36
+      Cursor = crHandPoint
+      Margins.Left = 50
+      Margins.Top = 390
+      Margins.Right = 50
+      Margins.Bottom = 30
+      Align = alClient
+      Alignment = taCenter
+      Caption = '  Voltar Ao Menu'#8287#8287#8287#8287#8287#8287
+      Color = clMenu
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Verdana'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = False
+      OnClick = VoltarMenuListaClick
+      OnMouseEnter = VoltarMenuListaMouseEnter
+      OnMouseLeave = VoltarMenuListaMouseLeave
+      ExplicitTop = 401
+    end
+    object Lista: TStringGrid
+      AlignWithMargins = True
+      Left = 51
+      Top = 76
+      Width = 410
+      Height = 276
+      Margins.Left = 50
+      Margins.Top = 20
+      Margins.Right = 50
+      Margins.Bottom = 160
+      Align = alClient
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect, goFixedRowDefAlign]
+      TabOrder = 0
+      ExplicitTop = 64
+      ExplicitHeight = 288
+    end
+    object PainelBotoes: TPanel
+      AlignWithMargins = True
+      Left = 51
+      Top = 366
+      Width = 410
+      Height = 61
+      Margins.Left = 50
+      Margins.Top = 310
+      Margins.Right = 50
+      Margins.Bottom = 85
+      Align = alClient
+      Color = clWhite
+      ParentBackground = False
+      TabOrder = 1
+      ExplicitTop = 378
+      ExplicitWidth = 406
+      ExplicitHeight = 41
+      object btnAtualizar: TLabel
+        AlignWithMargins = True
+        Left = 21
+        Top = 11
+        Width = 118
+        Height = 39
+        Margins.Left = 20
+        Margins.Top = 10
+        Margins.Right = 270
+        Margins.Bottom = 10
+        Align = alClient
+        Alignment = taCenter
+        Caption = 'Atualizar'
+        Color = clSilver
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -27
+        Font.Name = 'Candara'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
+        ExplicitTop = 16
+        ExplicitWidth = 104
+        ExplicitHeight = 33
+      end
+      object btnExcluir: TLabel
+        AlignWithMargins = True
+        Left = 271
+        Top = 11
+        Width = 118
+        Height = 39
+        Margins.Left = 270
+        Margins.Top = 10
+        Margins.Right = 20
+        Margins.Bottom = 10
+        Align = alClient
+        Alignment = taCenter
+        Caption = 'Excluir'
+        Color = clSilver
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -27
+        Font.Name = 'Candara'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
+        OnClick = btnExcluirClick
+        OnMouseEnter = btnExcluirMouseEnter
+        OnMouseLeave = btnExcluirMouseLeave
+        ExplicitTop = 16
+        ExplicitWidth = 79
+        ExplicitHeight = 33
+      end
     end
   end
 end

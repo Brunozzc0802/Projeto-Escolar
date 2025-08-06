@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, uFormEstudantes;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, uFormEstudantes,
+  Vcl.Grids;
 
 type
   TForm1 = class(TForm)
@@ -31,6 +32,13 @@ type
     DigiteCodigoTitulo: TLabel;
     BotaoAdicionar: TLabel;
     EditNome: TEdit;
+    PainelListaEstudantes: TPanel;
+    tituloLista: TLabel;
+    VoltarMenuLista: TLabel;
+    Lista: TStringGrid;
+    PainelBotoes: TPanel;
+    btnAtualizar: TLabel;
+    btnExcluir: TLabel;
     procedure EstudantesMouseEnter(Sender: TObject);
     procedure EstudantesMouseLeave(Sender: TObject);
     procedure DisciplinasMouseEnter(Sender: TObject);
@@ -57,6 +65,14 @@ type
     procedure voltarMenuClick(Sender: TObject);
     procedure BotaoAdicionarClick(Sender: TObject);
     procedure EditCodigoKeyPress(Sender: TObject; var Key: Char);
+    procedure FormCreate(Sender: TObject);
+    procedure VerListaClick(Sender: TObject);
+    procedure VoltarMenuListaMouseEnter(Sender: TObject);
+    procedure VoltarMenuListaClick(Sender: TObject);
+    procedure VoltarMenuListaMouseLeave(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnExcluirMouseEnter(Sender: TObject);
+    procedure btnExcluirMouseLeave(Sender: TObject);
 
   private
     { Private declarations }
@@ -113,7 +129,14 @@ procedure TForm1.AddEstudanteMouseLeave(Sender: TObject);
   end;
 
 procedure TForm1.BotaoAdicionarClick(Sender: TObject);
-begin
+  var novaLinha:Integer;
+  begin
+    if (Trim(EditCodigo.Text) = '') or (Trim(EditNome.Text) = '') then
+    begin
+      ShowMessage('Preencha todos os campos.');
+      Exit;
+  end;
+
   if not EhNomeCompleto(EditNome.Text) then
   begin
     ShowMessage('Digite o nome completo do aluno.');
@@ -128,8 +151,13 @@ begin
     Exit;
   end;
 
+  novaLinha := Lista.RowCount;
+  Lista.RowCount :=  novaLinha + 1;
 
-  ShowMessage('Aluno Cadastrado com Sucesso!');
+  Lista.Cells[0,novaLinha] := EditCodigo.Text;
+  Lista.Cells[1,novaLinha] := EditNome.Text;
+
+  ShowMessage('Aluno Adicionado com Sucesso!');
   EditNome.Text := '';
   EditCodigo.Text := '';
   EditNome.SetFocus;
@@ -143,6 +171,37 @@ procedure TForm1.BotaoAdicionarMouseEnter(Sender: TObject);
 procedure TForm1.BotaoAdicionarMouseLeave(Sender: TObject);
   begin
     BotaoAdicionar.Color := clMenu;
+  end;
+
+procedure TForm1.btnExcluirClick(Sender: TObject);
+  begin
+    var
+  i: Integer;
+begin
+  if Lista.Row > 0 then
+  begin
+
+    for i := Lista.Row to Lista.RowCount - 2 do
+      Lista.Rows[i].Assign(Lista.Rows[i + 1]);
+
+
+    Lista.RowCount := Lista.RowCount - 1;
+
+    ShowMessage('O Aluno Foi Excluído');
+  end
+  else
+    ShowMessage('Selecione um aluno para excluir.');
+  end;
+  end;
+
+procedure TForm1.btnExcluirMouseEnter(Sender: TObject);
+  begin
+    btnExcluir.Color := clActiveCaption
+  end;
+
+procedure TForm1.btnExcluirMouseLeave(Sender: TObject);
+  begin
+    btnExcluir.Color := clSilver;
   end;
 
 procedure TForm1.DisciplinasMouseEnter(Sender: TObject);
@@ -172,6 +231,18 @@ procedure TForm1.EstudantesMouseLeave(Sender: TObject);
   end;
 
 
+procedure TForm1.FormCreate(Sender: TObject);
+  begin
+    Lista.ColCount := 2;
+    Lista.RowCount := 1;
+    Lista.Cells[0, 0] := 'Código';
+    Lista.Cells[1, 0] := 'Nome';
+
+
+    Lista.ColWidths[0] := 200;
+    Lista.ColWidths[1] := 300;
+  end;
+
 procedure TForm1.MatriculasMouseEnter(Sender: TObject);
   begin
     Matriculas.Color := clActiveCaption;
@@ -191,6 +262,12 @@ procedure TForm1.TurmasMouseEnter(Sender: TObject);
 procedure TForm1.TurmasMouseLeave(Sender: TObject);
   begin
     Turmas.Color := clMenu;
+  end;
+
+procedure TForm1.VerListaClick(Sender: TObject);
+  begin
+    PainelEstudantes.Visible := False;
+    PainelListaEstudantes.Visible := True;
   end;
 
 procedure TForm1.VerListaMouseEnter(Sender: TObject);
@@ -224,6 +301,22 @@ procedure TForm1.voltarMenuClick(Sender: TObject);
   begin
     PainelAddEstudantes.Visible  := False;
     PainelEstudantes.Visible := True;
+  end;
+
+procedure TForm1.VoltarMenuListaClick(Sender: TObject);
+  begin
+    PainelListaEstudantes.Visible := False;
+    PainelEstudantes.Visible := True;
+  end;
+
+procedure TForm1.VoltarMenuListaMouseEnter(Sender: TObject);
+  begin
+    VoltarMenuLista.Color := clActiveCaption;
+  end;
+
+procedure TForm1.VoltarMenuListaMouseLeave(Sender: TObject);
+  begin
+    VoltarMenuLista.Color := clMenu;
   end;
 
 procedure TForm1.voltarMenuMouseEnter(Sender: TObject);
