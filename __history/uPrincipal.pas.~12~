@@ -25,6 +25,7 @@ type
     VoltarAoMenu: TLabel;
     PainelAddEstudantes: TPanel;
     TituloAddEstudantes: TLabel;
+    CliqueOpçãoAcessar: TLabel;
     DigiteNomeTitulo: TLabel;
     voltarMenu: TLabel;
     EditCodigo: TEdit;
@@ -39,7 +40,6 @@ type
     btnAtualizar: TLabel;
     btnExcluir: TLabel;
     btnAdicionar: TLabel;
-    btnListaDeEstudantesMenuAdd: TLabel;
 
     procedure EstudantesMouseEnter(Sender: TObject);
     procedure EstudantesMouseLeave(Sender: TObject);
@@ -81,10 +81,6 @@ type
     procedure btnAdicionarMouseEnter(Sender: TObject);
     procedure btnAdicionarMouseLeave(Sender: TObject);
     procedure btnAdicionarClick(Sender: TObject);
-    procedure btnListaDeEstudantesMenuAddMouseEnter(Sender: TObject);
-    procedure btnListaDeEstudantesMenuAddMouseLeave(Sender: TObject);
-    procedure btnListaDeEstudantesMenuAddClick(Sender: TObject);
-
 
   private
     { Private declarations }
@@ -244,22 +240,6 @@ procedure TForm1.btnExcluirMouseLeave(Sender: TObject);
     btnExcluir.Color := clSilver;
   end;
 
-procedure TForm1.btnListaDeEstudantesMenuAddClick(Sender: TObject);
-  begin
-    PainelAddEstudantes.Visible := False;
-    PainelListaEstudantes.Visible := True;
-  end;
-
-procedure TForm1.btnListaDeEstudantesMenuAddMouseEnter(Sender: TObject);
-  begin
-    btnListaDeEstudantesMenuAdd.Color := clActiveCaption;
-  end;
-
-procedure TForm1.btnListaDeEstudantesMenuAddMouseLeave(Sender: TObject);
-  begin
-    btnListaDeEstudantesMenuAdd.Color := clMenu;
-  end;
-
 procedure TForm1.DisciplinasMouseEnter(Sender: TObject);
   begin
     Disciplinas.Color := clActiveCaption;
@@ -297,8 +277,6 @@ procedure TForm1.FormCreate(Sender: TObject);
     Lista.ColWidths[0] := 200;
     Lista.ColWidths[1] := 300;
   end;
-
-
 
 procedure TForm1.MatriculasMouseEnter(Sender: TObject);
   begin

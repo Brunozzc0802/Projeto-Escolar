@@ -348,7 +348,7 @@
     end
   end
   object PainelAddEstudantes: TPanel
-    Left = 152
+    Left = 153
     Top = 80
     Width = 512
     Height = 513
@@ -377,8 +377,20 @@
       Font.Style = [fsBold, fsUnderline]
       ParentColor = False
       ParentFont = False
-      ExplicitLeft = -1
-      ExplicitTop = 0
+      ExplicitWidth = 330
+    end
+    object CliqueOpçãoAcessar: TLabel
+      Left = 97
+      Top = 449
+      Width = 350
+      Height = 23
+      Caption = 'Clique Na Op'#231#227'o Que Deseja Acessar'
+      Font.Charset = 163
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Arial'
+      Font.Style = [fsBold, fsItalic]
+      ParentFont = False
     end
     object DigiteNomeTitulo: TLabel
       AlignWithMargins = True
@@ -410,14 +422,14 @@
     object voltarMenu: TLabel
       AlignWithMargins = True
       Left = 51
-      Top = 456
+      Top = 376
       Width = 410
       Height = 36
       Cursor = crHandPoint
       Margins.Left = 50
-      Margins.Top = 400
+      Margins.Top = 320
       Margins.Right = 50
-      Margins.Bottom = 20
+      Margins.Bottom = 100
       Align = alClient
       Alignment = taCenter
       Caption = '  Voltar Ao Menu'#8287#8287#8287#8287#8287#8287
@@ -433,7 +445,6 @@
       OnClick = voltarMenuClick
       OnMouseEnter = voltarMenuMouseEnter
       OnMouseLeave = voltarMenuMouseLeave
-      ExplicitTop = 376
       ExplicitWidth = 292
       ExplicitHeight = 32
     end
@@ -497,37 +508,6 @@
       ExplicitWidth = 110
       ExplicitHeight = 25
     end
-    object btnListaDeEstudantesMenuAdd: TLabel
-      AlignWithMargins = True
-      Left = 51
-      Top = 406
-      Width = 410
-      Height = 36
-      Cursor = crHandPoint
-      Margins.Left = 50
-      Margins.Top = 350
-      Margins.Right = 50
-      Margins.Bottom = 70
-      Align = alClient
-      Alignment = taCenter
-      Caption = 'Lista de Estudantes'
-      Color = clMenu
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -27
-      Font.Name = 'Verdana'
-      Font.Style = [fsBold]
-      ParentColor = False
-      ParentFont = False
-      ParentShowHint = False
-      ShowHint = True
-      Transparent = False
-      OnClick = btnListaDeEstudantesMenuAddClick
-      OnMouseEnter = btnListaDeEstudantesMenuAddMouseEnter
-      OnMouseLeave = btnListaDeEstudantesMenuAddMouseLeave
-      ExplicitWidth = 294
-      ExplicitHeight = 32
-    end
     object EditNome: TEdit
       AlignWithMargins = True
       Left = 51
@@ -564,7 +544,7 @@
     end
   end
   object PainelListaEstudantes: TPanel
-    Left = 152
+    Left = 153
     Top = 80
     Width = 512
     Height = 513
@@ -593,7 +573,7 @@
       Font.Style = [fsBold, fsUnderline]
       ParentColor = False
       ParentFont = False
-      ExplicitLeft = 67
+      ExplicitWidth = 308
     end
     object VoltarMenuLista: TLabel
       AlignWithMargins = True
