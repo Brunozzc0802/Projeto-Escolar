@@ -102,7 +102,7 @@ implementation
 
 {$R *.dfm}
 
-function VerificarNomeCompleto(const Nome: string): Boolean;
+function EhNomeCompleto(const Nome: string): Boolean;
   var
     Partes: TArray<string>;
   begin
@@ -111,7 +111,7 @@ function VerificarNomeCompleto(const Nome: string): Boolean;
     Result := Length(Partes) >= 2;
   end;
 
-function VerificarNumero(const Texto: string): Boolean;
+function EhNumero(const Texto: string): Boolean;
   var
     Valor: Integer;
   begin
@@ -169,14 +169,14 @@ procedure TForm1.BotaoAdicionarClick(Sender: TObject);
     Exit;
   end;
 
-  if not VerificarNomeCompleto(EditNome.Text) then
+  if not EhNomeCompleto(EditNome.Text) then
   begin
     ShowMessage('Digite o nome completo do aluno.');
     EditNome.SetFocus;
     Exit;
   end;
 
-  if not VerificarNumero(EditCodigo.Text) then
+  if not EhNumero(EditCodigo.Text) then
   begin
     ShowMessage('Digite apenas números no campo Código.');
     EditCodigo.SetFocus;
