@@ -5,10 +5,10 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, uFormEstudantes,
-  Vcl.Grids;
+  Vcl.Grids,System.Generics.Collections;
 
 type
-  TForm1 = class(TForm)
+    TForm1 = class(TForm)
     PainelInicio: TPanel;
     Titulo: TLabel;
     Estudantes: TLabel;
@@ -39,8 +39,10 @@ type
     PainelBotoes: TPanel;
     btnAtualizar: TLabel;
     btnExcluir: TLabel;
-    btnAdicionar: TLabel;
-
+    procedure FormDestroy(Sender: TObject);
+    procedure btnAtualizarClick(Sender: TObject);
+    private
+    LinhasMarcadasParaExcluir: TList<Integer>;
     procedure EstudantesMouseEnter(Sender: TObject);
     procedure EstudantesMouseLeave(Sender: TObject);
     procedure DisciplinasMouseEnter(Sender: TObject);
@@ -77,10 +79,6 @@ type
     procedure btnExcluirMouseLeave(Sender: TObject);
     procedure btnAtualizarMouseEnter(Sender: TObject);
     procedure btnAtualizarMouseLeave(Sender: TObject);
-    procedure btnAtualizarClick(Sender: TObject);
-    procedure btnAdicionarMouseEnter(Sender: TObject);
-    procedure btnAdicionarMouseLeave(Sender: TObject);
-    procedure btnAdicionarClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -166,8 +164,8 @@ procedure TForm1.BotaoAdicionarClick(Sender: TObject);
   Lista.Cells[1,novaLinha] := EditNome.Text;
 
   ShowMessage('Aluno Adicionado com Sucesso!');
-  EditNome.Clear;
-  EditCodigo.Clear;
+  EditNome.Text := '';
+  EditCodigo.Text := '';
   EditNome.SetFocus;
 end;
 
@@ -181,25 +179,41 @@ procedure TForm1.BotaoAdicionarMouseLeave(Sender: TObject);
     BotaoAdicionar.Color := clMenu;
   end;
 
-procedure TForm1.btnAdicionarClick(Sender: TObject);
-  begin
-    PainelListaEstudantes.Visible := False;
-    PainelAddEstudantes.Visible := True;
-  end;
-
-procedure TForm1.btnAdicionarMouseEnter(Sender: TObject);
-  begin
-    BtnAdicionar.Color := clActiveCaption;
-  end;
-
-procedure TForm1.btnAdicionarMouseLeave(Sender: TObject);
-  begin
-    BtnAdicionar.Color := clSilver;
-  end;
-
 procedure TForm1.btnAtualizarClick(Sender: TObject);
   begin
-    Lista.RowCount := Lista.RowCount - 1;
+   var
+  i, j, linha, temp: Integer;
+begin
+
+  for i := 0 to LinhasMarcadasParaExcluir.Count - 2 do
+    for j := i + 1 to LinhasMarcadasParaExcluir.Count - 1 do
+      if LinhasMarcadasParaExcluir[i] < LinhasMarcadasParaExcluir[j] then
+      begin
+        temp := LinhasMarcadasParaExcluir[i];
+        LinhasMarcadasParaExcluir[i] := LinhasMarcadasParaExcluir[j];
+        LinhasMarcadasParaExcluir[j] := temp;
+      end;
+
+
+  for i := 0 to LinhasMarcadasParaExcluir.Count - 1 do
+  begin
+    linha := LinhasMarcadasParaExcluir[i];
+    if linha > 0 then
+    begin
+      for j := linha to Lista.RowCount - 2 do
+        Lista.Rows[j].Assign(Lista.Rows[j + 1]);
+
+      Lista.RowCount := Lista.RowCount - 1;
+    end;
+  end;
+
+  LinhasMarcadasParaExcluir.Clear;
+  ShowMessage('Alunos excluídos com sucesso!');
+  end;
+
+  LinhasMarcadasParaExcluir.Clear;
+
+  ShowMessage('Alunos excluídos com sucesso!');
   end;
 
 procedure TForm1.btnAtualizarMouseEnter(Sender: TObject);
@@ -214,20 +228,13 @@ procedure TForm1.btnAtualizarMouseLeave(Sender: TObject);
 
 procedure TForm1.btnExcluirClick(Sender: TObject);
   begin
-    var
-  i: Integer;
-begin
-  if Lista.Row > 0 then
+    if (Lista.Row > 0) and (not LinhasMarcadasParaExcluir.Contains(Lista.Row)) then
   begin
-
-    for i := Lista.Row to Lista.RowCount - 2 do
-      Lista.Rows[i].Assign(Lista.Rows[i + 1]);
-
-      ShowMessage('O Aluno Foi Excluído');
+    LinhasMarcadasParaExcluir.Add(Lista.Row);
+    ShowMessage('Aluno Excluido');
   end
   else
-    ShowMessage('Selecione um aluno para excluir.');
-  end;
+    ShowMessage('Selecione um aluno Para Excluir');
   end;
 
 procedure TForm1.btnExcluirMouseEnter(Sender: TObject);
@@ -266,6 +273,7 @@ procedure TForm1.EstudantesMouseLeave(Sender: TObject);
     Estudantes.Color := clMenu;
   end;
 
+
 procedure TForm1.FormCreate(Sender: TObject);
   begin
     Lista.ColCount := 2;
@@ -273,9 +281,16 @@ procedure TForm1.FormCreate(Sender: TObject);
     Lista.Cells[0, 0] := 'Código';
     Lista.Cells[1, 0] := 'Nome';
 
-
     Lista.ColWidths[0] := 200;
     Lista.ColWidths[1] := 300;
+
+    Lista.Options := Lista.Options + [goRowSelect];
+    LinhasMarcadasParaExcluir := TList<Integer>.Create;
+  end;
+
+procedure TForm1.FormDestroy(Sender: TObject);
+  begin
+    LinhasMarcadasParaExcluir.Free;
   end;
 
 procedure TForm1.MatriculasMouseEnter(Sender: TObject);
@@ -309,6 +324,7 @@ procedure TForm1.VerListaMouseEnter(Sender: TObject);
   begin
     VerLista.Color := clActiveCaption;
   end;
+
 
 procedure TForm1.VerListaMouseLeave(Sender: TObject);
   begin

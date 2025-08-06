@@ -634,12 +634,12 @@
       TabOrder = 1
       object btnAtualizar: TLabel
         AlignWithMargins = True
-        Left = 11
+        Left = 21
         Top = 11
-        Width = 128
+        Width = 118
         Height = 39
         Cursor = crHandPoint
-        Margins.Left = 10
+        Margins.Left = 20
         Margins.Top = 10
         Margins.Right = 270
         Margins.Bottom = 10
@@ -655,23 +655,21 @@
         ParentColor = False
         ParentFont = False
         Transparent = False
-        OnClick = btnAtualizarClick
         OnMouseEnter = btnAtualizarMouseEnter
         OnMouseLeave = btnAtualizarMouseLeave
-        ExplicitLeft = 21
         ExplicitWidth = 104
         ExplicitHeight = 33
       end
       object btnExcluir: TLabel
         AlignWithMargins = True
-        Left = 151
+        Left = 271
         Top = 11
         Width = 118
         Height = 39
         Cursor = crHandPoint
-        Margins.Left = 150
+        Margins.Left = 270
         Margins.Top = 10
-        Margins.Right = 140
+        Margins.Right = 20
         Margins.Bottom = 10
         Align = alClient
         Alignment = taCenter
@@ -688,36 +686,7 @@
         OnClick = btnExcluirClick
         OnMouseEnter = btnExcluirMouseEnter
         OnMouseLeave = btnExcluirMouseLeave
-        ExplicitLeft = 147
-      end
-      object btnAdicionar: TLabel
-        AlignWithMargins = True
-        Left = 281
-        Top = 11
-        Width = 118
-        Height = 39
-        Cursor = crHandPoint
-        Margins.Left = 280
-        Margins.Top = 10
-        Margins.Right = 10
-        Margins.Bottom = 10
-        Align = alClient
-        Alignment = taCenter
-        Caption = 'Adicionar'
-        Color = clSilver
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clBlack
-        Font.Height = -27
-        Font.Name = 'Candara'
-        Font.Style = [fsBold]
-        ParentColor = False
-        ParentFont = False
-        Transparent = False
-        OnClick = btnAdicionarClick
-        OnMouseEnter = btnAdicionarMouseEnter
-        OnMouseLeave = btnAdicionarMouseLeave
-        ExplicitLeft = 291
-        ExplicitWidth = 111
+        ExplicitWidth = 79
         ExplicitHeight = 33
       end
     end

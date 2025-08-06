@@ -4,7 +4,7 @@
   Margins.Top = 30
   Caption = 'For'
   ClientHeight = 658
-  ClientWidth = 1253
+  ClientWidth = 765
   Color = clBtnFace
   TransparentColorValue = clSilver
   Font.Charset = DEFAULT_CHARSET
@@ -314,8 +314,7 @@
       OnClick = VerListaClick
       OnMouseEnter = VerListaMouseEnter
       OnMouseLeave = VerListaMouseLeave
-      ExplicitWidth = 381
-      ExplicitHeight = 32
+      ExplicitLeft = 50
     end
     object VoltarAoMenu: TLabel
       AlignWithMargins = True
@@ -377,7 +376,8 @@
       Font.Style = [fsBold, fsUnderline]
       ParentColor = False
       ParentFont = False
-      ExplicitWidth = 330
+      ExplicitLeft = 26
+      ExplicitTop = 24
     end
     object CliqueOpçãoAcessar: TLabel
       Left = 97
@@ -544,7 +544,7 @@
     end
   end
   object PainelListaEstudantes: TPanel
-    Left = 153
+    Left = 152
     Top = 80
     Width = 512
     Height = 513
@@ -601,8 +601,7 @@
       OnClick = VoltarMenuListaClick
       OnMouseEnter = VoltarMenuListaMouseEnter
       OnMouseLeave = VoltarMenuListaMouseLeave
-      ExplicitWidth = 292
-      ExplicitHeight = 32
+      ExplicitTop = 401
     end
     object Lista: TStringGrid
       AlignWithMargins = True
@@ -617,6 +616,8 @@
       Align = alClient
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect, goFixedRowDefAlign]
       TabOrder = 0
+      ExplicitTop = 64
+      ExplicitHeight = 288
     end
     object PainelBotoes: TPanel
       AlignWithMargins = True
@@ -632,14 +633,16 @@
       Color = clWhite
       ParentBackground = False
       TabOrder = 1
+      ExplicitTop = 378
+      ExplicitWidth = 406
+      ExplicitHeight = 41
       object btnAtualizar: TLabel
         AlignWithMargins = True
-        Left = 11
+        Left = 21
         Top = 11
-        Width = 128
+        Width = 118
         Height = 39
-        Cursor = crHandPoint
-        Margins.Left = 10
+        Margins.Left = 20
         Margins.Top = 10
         Margins.Right = 270
         Margins.Bottom = 10
@@ -655,23 +658,19 @@
         ParentColor = False
         ParentFont = False
         Transparent = False
-        OnClick = btnAtualizarClick
-        OnMouseEnter = btnAtualizarMouseEnter
-        OnMouseLeave = btnAtualizarMouseLeave
-        ExplicitLeft = 21
+        ExplicitTop = 16
         ExplicitWidth = 104
         ExplicitHeight = 33
       end
       object btnExcluir: TLabel
         AlignWithMargins = True
-        Left = 151
+        Left = 271
         Top = 11
         Width = 118
         Height = 39
-        Cursor = crHandPoint
-        Margins.Left = 150
+        Margins.Left = 270
         Margins.Top = 10
-        Margins.Right = 140
+        Margins.Right = 20
         Margins.Bottom = 10
         Align = alClient
         Alignment = taCenter
@@ -688,36 +687,8 @@
         OnClick = btnExcluirClick
         OnMouseEnter = btnExcluirMouseEnter
         OnMouseLeave = btnExcluirMouseLeave
-        ExplicitLeft = 147
-      end
-      object btnAdicionar: TLabel
-        AlignWithMargins = True
-        Left = 281
-        Top = 11
-        Width = 118
-        Height = 39
-        Cursor = crHandPoint
-        Margins.Left = 280
-        Margins.Top = 10
-        Margins.Right = 10
-        Margins.Bottom = 10
-        Align = alClient
-        Alignment = taCenter
-        Caption = 'Adicionar'
-        Color = clSilver
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clBlack
-        Font.Height = -27
-        Font.Name = 'Candara'
-        Font.Style = [fsBold]
-        ParentColor = False
-        ParentFont = False
-        Transparent = False
-        OnClick = btnAdicionarClick
-        OnMouseEnter = btnAdicionarMouseEnter
-        OnMouseLeave = btnAdicionarMouseLeave
-        ExplicitLeft = 291
-        ExplicitWidth = 111
+        ExplicitTop = 16
+        ExplicitWidth = 79
         ExplicitHeight = 33
       end
     end

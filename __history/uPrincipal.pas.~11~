@@ -39,7 +39,6 @@ type
     PainelBotoes: TPanel;
     btnAtualizar: TLabel;
     btnExcluir: TLabel;
-    btnAdicionar: TLabel;
 
     procedure EstudantesMouseEnter(Sender: TObject);
     procedure EstudantesMouseLeave(Sender: TObject);
@@ -77,10 +76,6 @@ type
     procedure btnExcluirMouseLeave(Sender: TObject);
     procedure btnAtualizarMouseEnter(Sender: TObject);
     procedure btnAtualizarMouseLeave(Sender: TObject);
-    procedure btnAtualizarClick(Sender: TObject);
-    procedure btnAdicionarMouseEnter(Sender: TObject);
-    procedure btnAdicionarMouseLeave(Sender: TObject);
-    procedure btnAdicionarClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -166,8 +161,8 @@ procedure TForm1.BotaoAdicionarClick(Sender: TObject);
   Lista.Cells[1,novaLinha] := EditNome.Text;
 
   ShowMessage('Aluno Adicionado com Sucesso!');
-  EditNome.Clear;
-  EditCodigo.Clear;
+  EditNome.Text := '';
+  EditCodigo.Text := '';
   EditNome.SetFocus;
 end;
 
@@ -179,27 +174,6 @@ procedure TForm1.BotaoAdicionarMouseEnter(Sender: TObject);
 procedure TForm1.BotaoAdicionarMouseLeave(Sender: TObject);
   begin
     BotaoAdicionar.Color := clMenu;
-  end;
-
-procedure TForm1.btnAdicionarClick(Sender: TObject);
-  begin
-    PainelListaEstudantes.Visible := False;
-    PainelAddEstudantes.Visible := True;
-  end;
-
-procedure TForm1.btnAdicionarMouseEnter(Sender: TObject);
-  begin
-    BtnAdicionar.Color := clActiveCaption;
-  end;
-
-procedure TForm1.btnAdicionarMouseLeave(Sender: TObject);
-  begin
-    BtnAdicionar.Color := clSilver;
-  end;
-
-procedure TForm1.btnAtualizarClick(Sender: TObject);
-  begin
-    Lista.RowCount := Lista.RowCount - 1;
   end;
 
 procedure TForm1.btnAtualizarMouseEnter(Sender: TObject);
@@ -223,7 +197,10 @@ begin
     for i := Lista.Row to Lista.RowCount - 2 do
       Lista.Rows[i].Assign(Lista.Rows[i + 1]);
 
-      ShowMessage('O Aluno Foi Excluído');
+
+    Lista.RowCount := Lista.RowCount - 1;
+
+    ShowMessage('O Aluno Foi Excluído');
   end
   else
     ShowMessage('Selecione um aluno para excluir.');
@@ -265,6 +242,7 @@ procedure TForm1.EstudantesMouseLeave(Sender: TObject);
   begin
     Estudantes.Color := clMenu;
   end;
+
 
 procedure TForm1.FormCreate(Sender: TObject);
   begin
@@ -309,6 +287,7 @@ procedure TForm1.VerListaMouseEnter(Sender: TObject);
   begin
     VerLista.Color := clActiveCaption;
   end;
+
 
 procedure TForm1.VerListaMouseLeave(Sender: TObject);
   begin
