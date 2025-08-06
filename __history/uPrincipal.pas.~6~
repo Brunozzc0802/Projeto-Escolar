@@ -22,15 +22,6 @@ type
     AddEstudante: TLabel;
     VerLista: TLabel;
     VoltarAoMenu: TLabel;
-    PainelAddEstudantes: TPanel;
-    TituloAddEstudantes: TLabel;
-    CliqueOpçãoAcessar: TLabel;
-    DigiteNomeTitulo: TLabel;
-    voltarMenu: TLabel;
-    EditCodigo: TEdit;
-    DigiteCodigoTitulo: TLabel;
-    BotaoAdicionar: TLabel;
-    EditNome: TEdit;
     procedure EstudantesMouseEnter(Sender: TObject);
     procedure EstudantesMouseLeave(Sender: TObject);
     procedure DisciplinasMouseEnter(Sender: TObject);
@@ -49,14 +40,7 @@ type
     procedure VoltarAoMenuClick(Sender: TObject);
     procedure VoltarAoMenuMouseEnter(Sender: TObject);
     procedure VoltarAoMenuMouseLeave(Sender: TObject);
-    procedure BotaoAdicionarMouseEnter(Sender: TObject);
-    procedure BotaoAdicionarMouseLeave(Sender: TObject);
-    procedure AddEstudanteClick(Sender: TObject);
-    procedure voltarMenuMouseEnter(Sender: TObject);
-    procedure voltarMenuMouseLeave(Sender: TObject);
-    procedure voltarMenuClick(Sender: TObject);
-    procedure BotaoAdicionarClick(Sender: TObject);
-    procedure EditCodigoKeyPress(Sender: TObject; var Key: Char);
+
 
   private
     { Private declarations }
@@ -72,35 +56,9 @@ implementation
 
 {$R *.dfm}
 
-function EhNomeCompleto(const Nome: string): Boolean;
-  var
-    Partes: TArray<string>;
-  begin
-    Result := False;
-    Partes := Nome.Trim.Split([' ']);
-    Result := Length(Partes) >= 2;
-  end;
-
-function EhNumero(const Texto: string): Boolean;
-  var
-    Valor: Integer;
-  begin
-    Result := TryStrToInt(Texto, Valor);
-end;
-
-procedure TForm1.EditCodigoKeyPress(Sender: TObject; var Key: Char);
-  begin
-    if not (Key in ['0'..'9', #8]) then
-      Key := #0;
-  end;
 
 
 
-procedure TForm1.AddEstudanteClick(Sender: TObject);
-  begin
-    PainelEstudantes.Visible := False;
-    PainelAddEstudantes.Visible := True;
-  end;
 
 procedure TForm1.AddEstudanteMouseEnter(Sender: TObject);
   begin
@@ -110,39 +68,6 @@ procedure TForm1.AddEstudanteMouseEnter(Sender: TObject);
 procedure TForm1.AddEstudanteMouseLeave(Sender: TObject);
   begin
     AddEstudante.Color := clMenu;
-  end;
-
-procedure TForm1.BotaoAdicionarClick(Sender: TObject);
-begin
-  if not EhNomeCompleto(EditNome.Text) then
-  begin
-    ShowMessage('Digite o nome completo do aluno.');
-    EditNome.SetFocus;
-    Exit;
-  end;
-
-  if not EhNumero(EditCodigo.Text) then
-  begin
-    ShowMessage('Digite apenas números no campo Código.');
-    EditCodigo.SetFocus;
-    Exit;
-  end;
-
-
-  ShowMessage('Aluno Cadastrado com Sucesso!');
-  EditNome.Text := '';
-  EditCodigo.Text := '';
-  EditNome.SetFocus;
-end;
-
-procedure TForm1.BotaoAdicionarMouseEnter(Sender: TObject);
-  begin
-    BotaoAdicionar.Color := clActiveCaption;
-  end;
-
-procedure TForm1.BotaoAdicionarMouseLeave(Sender: TObject);
-  begin
-    BotaoAdicionar.Color := clMenu;
   end;
 
 procedure TForm1.DisciplinasMouseEnter(Sender: TObject);
@@ -218,22 +143,6 @@ procedure TForm1.VoltarAoMenuMouseEnter(Sender: TObject);
 procedure TForm1.VoltarAoMenuMouseLeave(Sender: TObject);
   begin
     VoltarAoMenu.Color := clMenu;
-  end;
-
-procedure TForm1.voltarMenuClick(Sender: TObject);
-  begin
-    PainelAddEstudantes.Visible  := False;
-    PainelEstudantes.Visible := True;
-  end;
-
-procedure TForm1.voltarMenuMouseEnter(Sender: TObject);
-  begin
-    voltarMenu.Color := clActiveCaption;
-  end;
-
-procedure TForm1.voltarMenuMouseLeave(Sender: TObject);
-  begin
-    voltarMenu.Color := clMenu;
   end;
 
 procedure TForm1.ProfessoresMouseEnter(Sender: TObject);
