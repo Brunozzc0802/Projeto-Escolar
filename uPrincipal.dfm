@@ -564,7 +564,7 @@
     end
   end
   object PainelListaEstudantes: TPanel
-    Left = 152
+    Left = 667
     Top = 80
     Width = 512
     Height = 513
@@ -593,7 +593,8 @@
       Font.Style = [fsBold, fsUnderline]
       ParentColor = False
       ParentFont = False
-      ExplicitLeft = 67
+      ExplicitLeft = 507
+      ExplicitTop = 88
     end
     object VoltarMenuLista: TLabel
       AlignWithMargins = True
@@ -637,6 +638,12 @@
       Align = alClient
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect, goFixedRowDefAlign]
       TabOrder = 0
+      RowHeights = (
+        24
+        24
+        24
+        24
+        24)
     end
     object PainelBotoes: TPanel
       AlignWithMargins = True

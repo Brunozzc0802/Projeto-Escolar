@@ -86,6 +86,8 @@ type
     procedure btnListaDeEstudantesMenuAddClick(Sender: TObject);
 
 
+
+
   private
     { Private declarations }
   public
@@ -141,12 +143,30 @@ procedure TForm1.AddEstudanteMouseLeave(Sender: TObject);
   end;
 
 procedure TForm1.BotaoAdicionarClick(Sender: TObject);
-  var novaLinha:Integer;
+  var novaLinha,i:Integer;
+  var codigoExiste:Boolean;
   begin
     if (Trim(EditCodigo.Text) = '') or (Trim(EditNome.Text) = '') then
     begin
       ShowMessage('Preencha todos os campos.');
       Exit;
+  end;
+
+  codigoExiste := False;
+
+   for i := 1 to Lista.RowCount - 1 do
+  begin
+    if Lista.Cells[0, i] = EditCodigo.Text then
+    begin
+      codigoExiste := True;
+      Break;
+    end;
+  end;
+
+  if codigoExiste then
+  begin
+    ShowMessage('Este código já existe na lista!');
+    Exit;
   end;
 
   if not EhNomeCompleto(EditNome.Text) then
@@ -219,7 +239,7 @@ procedure TForm1.btnAtualizarMouseLeave(Sender: TObject);
 procedure TForm1.btnExcluirClick(Sender: TObject);
   begin
     var
-  i: Integer;
+  i, novaLinha: Integer;
 begin
   if Lista.Row > 0 then
   begin
@@ -228,6 +248,7 @@ begin
       Lista.Rows[i].Assign(Lista.Rows[i + 1]);
 
       ShowMessage('O Aluno Foi Excluído');
+
   end
   else
     ShowMessage('Selecione um aluno para excluir.');
@@ -297,6 +318,7 @@ procedure TForm1.FormCreate(Sender: TObject);
     Lista.ColWidths[0] := 200;
     Lista.ColWidths[1] := 300;
   end;
+
 
 
 
@@ -384,6 +406,8 @@ procedure TForm1.voltarMenuMouseLeave(Sender: TObject);
   begin
     voltarMenu.Color := clMenu;
   end;
+
+
 
 procedure TForm1.ProfessoresMouseEnter(Sender: TObject);
 
