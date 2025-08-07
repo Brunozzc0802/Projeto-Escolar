@@ -40,6 +40,12 @@ type
     btnExcluir: TLabel;
     btnAdicionar: TLabel;
     btnListaDeEstudantesMenuAdd: TLabel;
+    PainelProfessores: TPanel;
+    lblTitulo: TLabel;
+    lblClique: TLabel;
+    btnAdicionarProf: TLabel;
+    btnListaProf: TLabel;
+    btnVoltar: TLabel;
 
     procedure EstudantesMouseEnter(Sender: TObject);
     procedure EstudantesMouseLeave(Sender: TObject);
@@ -84,6 +90,14 @@ type
     procedure btnListaDeEstudantesMenuAddMouseEnter(Sender: TObject);
     procedure btnListaDeEstudantesMenuAddMouseLeave(Sender: TObject);
     procedure btnListaDeEstudantesMenuAddClick(Sender: TObject);
+    procedure btnAdicionarProfMouseEnter(Sender: TObject);
+    procedure btnAdicionarProfMouseLeave(Sender: TObject);
+    procedure btnListaProfMouseEnter(Sender: TObject);
+    procedure btnListaProfMouseLeave(Sender: TObject);
+    procedure btnVoltarMouseEnter(Sender: TObject);
+    procedure btnVoltarMouseLeave(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
+    procedure ProfessoresClick(Sender: TObject);
 
 
 
@@ -221,6 +235,16 @@ procedure TForm1.btnAdicionarMouseLeave(Sender: TObject);
     BtnAdicionar.Color := clSilver;
   end;
 
+procedure TForm1.btnAdicionarProfMouseEnter(Sender: TObject);
+  begin
+    btnAdicionarProf.Color := clActiveCaption;
+  end;
+
+procedure TForm1.btnAdicionarProfMouseLeave(Sender: TObject);
+  begin
+    btnAdicionarProf.Color := clMenu;
+  end;
+
 procedure TForm1.btnAtualizarClick(Sender: TObject);
   begin
     Lista.RowCount := Lista.RowCount - 1;
@@ -279,6 +303,32 @@ procedure TForm1.btnListaDeEstudantesMenuAddMouseEnter(Sender: TObject);
 procedure TForm1.btnListaDeEstudantesMenuAddMouseLeave(Sender: TObject);
   begin
     btnListaDeEstudantesMenuAdd.Color := clMenu;
+  end;
+
+procedure TForm1.btnListaProfMouseEnter(Sender: TObject);
+  begin
+    btnListaProf.Color := clActiveCaption;
+  end;
+
+procedure TForm1.btnListaProfMouseLeave(Sender: TObject);
+  begin
+    btnListaProf.Color := clMenu;
+  end;
+
+procedure TForm1.btnVoltarClick(Sender: TObject);
+  begin
+    PainelProfessores.Visible := False;
+    PainelInicio.Visible := True;
+  end;
+
+procedure TForm1.btnVoltarMouseEnter(Sender: TObject);
+  begin
+    btnVoltar.Color := clActiveCaption;
+  end;
+
+procedure TForm1.btnVoltarMouseLeave(Sender: TObject);
+  begin
+    btnVoltar.Color := clMenu;
   end;
 
 procedure TForm1.DisciplinasMouseEnter(Sender: TObject);
@@ -408,6 +458,12 @@ procedure TForm1.voltarMenuMouseLeave(Sender: TObject);
   end;
 
 
+
+procedure TForm1.ProfessoresClick(Sender: TObject);
+  begin
+    PainelInicio.Visible := False;
+    PainelProfessores.Visible := True;
+  end;
 
 procedure TForm1.ProfessoresMouseEnter(Sender: TObject);
 

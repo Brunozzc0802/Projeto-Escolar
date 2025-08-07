@@ -4,7 +4,7 @@
   Margins.Top = 30
   Caption = 'For'
   ClientHeight = 658
-  ClientWidth = 1253
+  ClientWidth = 1545
   Color = clBtnFace
   TransparentColorValue = clSilver
   Font.Charset = DEFAULT_CHARSET
@@ -16,8 +16,8 @@
   OnCreate = FormCreate
   TextHeight = 15
   object PainelInicio: TPanel
-    Left = 152
-    Top = 80
+    Left = 96
+    Top = 64
     Width = 513
     Height = 513
     Cursor = crArrow
@@ -204,6 +204,7 @@
       ParentColor = False
       ParentFont = False
       Transparent = False
+      OnClick = ProfessoresClick
       OnMouseEnter = ProfessoresMouseEnter
       OnMouseLeave = ProfessoresMouseLeave
       ExplicitWidth = 259
@@ -211,8 +212,8 @@
     end
   end
   object PainelEstudantes: TPanel
-    Left = 153
-    Top = 80
+    Left = 81
+    Top = 64
     Width = 512
     Height = 513
     Margins.Right = 20
@@ -348,8 +349,8 @@
     end
   end
   object PainelAddEstudantes: TPanel
-    Left = 152
-    Top = 80
+    Left = 81
+    Top = 64
     Width = 512
     Height = 513
     Margins.Right = 20
@@ -377,8 +378,7 @@
       Font.Style = [fsBold, fsUnderline]
       ParentColor = False
       ParentFont = False
-      ExplicitLeft = -1
-      ExplicitTop = 0
+      ExplicitLeft = 98
     end
     object DigiteNomeTitulo: TLabel
       AlignWithMargins = True
@@ -433,7 +433,6 @@
       OnClick = voltarMenuClick
       OnMouseEnter = voltarMenuMouseEnter
       OnMouseLeave = voltarMenuMouseLeave
-      ExplicitTop = 376
       ExplicitWidth = 292
       ExplicitHeight = 32
     end
@@ -564,8 +563,8 @@
     end
   end
   object PainelListaEstudantes: TPanel
-    Left = 667
-    Top = 80
+    Left = 81
+    Top = 64
     Width = 512
     Height = 513
     Margins.Right = 20
@@ -593,8 +592,8 @@
       Font.Style = [fsBold, fsUnderline]
       ParentColor = False
       ParentFont = False
-      ExplicitLeft = 507
-      ExplicitTop = 88
+      ExplicitLeft = 71
+      ExplicitTop = 71
     end
     object VoltarMenuLista: TLabel
       AlignWithMargins = True
@@ -685,7 +684,6 @@
         OnClick = btnAtualizarClick
         OnMouseEnter = btnAtualizarMouseEnter
         OnMouseLeave = btnAtualizarMouseLeave
-        ExplicitLeft = 21
         ExplicitWidth = 104
         ExplicitHeight = 33
       end
@@ -715,7 +713,8 @@
         OnClick = btnExcluirClick
         OnMouseEnter = btnExcluirMouseEnter
         OnMouseLeave = btnExcluirMouseLeave
-        ExplicitLeft = 147
+        ExplicitWidth = 79
+        ExplicitHeight = 33
       end
       object btnAdicionar: TLabel
         AlignWithMargins = True
@@ -743,10 +742,144 @@
         OnClick = btnAdicionarClick
         OnMouseEnter = btnAdicionarMouseEnter
         OnMouseLeave = btnAdicionarMouseLeave
-        ExplicitLeft = 291
         ExplicitWidth = 111
         ExplicitHeight = 33
       end
+    end
+  end
+  object PainelProfessores: TPanel
+    Left = 665
+    Top = 64
+    Width = 512
+    Height = 513
+    Margins.Right = 20
+    Color = clMedGray
+    ParentBackground = False
+    TabOrder = 4
+    Visible = False
+    object lblTitulo: TLabel
+      AlignWithMargins = True
+      Left = 51
+      Top = 16
+      Width = 430
+      Height = 37
+      Margins.Left = 50
+      Margins.Top = 15
+      Margins.Right = 30
+      Align = alTop
+      Alignment = taCenter
+      Caption = 'Menu Professores'
+      Color = clFuchsia
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -32
+      Font.Name = 'Arial'
+      Font.Style = [fsBold, fsUnderline]
+      ParentColor = False
+      ParentFont = False
+      ExplicitWidth = 277
+    end
+    object lblClique: TLabel
+      Left = 97
+      Top = 449
+      Width = 350
+      Height = 23
+      Caption = 'Clique Na Op'#231#227'o Que Deseja Acessar'
+      Font.Charset = 163
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Arial'
+      Font.Style = [fsBold, fsItalic]
+      ParentFont = False
+    end
+    object btnAdicionarProf: TLabel
+      AlignWithMargins = True
+      Left = 51
+      Top = 76
+      Width = 410
+      Height = 36
+      Cursor = crHandPoint
+      Margins.Left = 50
+      Margins.Top = 20
+      Margins.Right = 50
+      Margins.Bottom = 400
+      Align = alClient
+      Alignment = taCenter
+      Caption = '   1 - Adicionar Professor'#8287
+      Color = clMenu
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -27
+      Font.Name = 'Verdana'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      Transparent = False
+      OnMouseEnter = btnAdicionarProfMouseEnter
+      OnMouseLeave = btnAdicionarProfMouseLeave
+      ExplicitWidth = 381
+      ExplicitHeight = 32
+    end
+    object btnListaProf: TLabel
+      AlignWithMargins = True
+      Left = 51
+      Top = 136
+      Width = 410
+      Height = 36
+      Cursor = crHandPoint
+      Margins.Left = 50
+      Margins.Top = 80
+      Margins.Right = 50
+      Margins.Bottom = 340
+      Align = alClient
+      Alignment = taCenter
+      Caption = '   2 - Lista De Professores'#8287
+      Color = clMenu
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Verdana'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      Transparent = False
+      OnMouseEnter = btnListaProfMouseEnter
+      OnMouseLeave = btnListaProfMouseLeave
+      ExplicitWidth = 393
+      ExplicitHeight = 32
+    end
+    object btnVoltar: TLabel
+      AlignWithMargins = True
+      Left = 51
+      Top = 196
+      Width = 410
+      Height = 36
+      Cursor = crHandPoint
+      Margins.Left = 50
+      Margins.Top = 140
+      Margins.Right = 50
+      Margins.Bottom = 280
+      Align = alClient
+      Alignment = taCenter
+      Caption = '3 - Voltar Ao Menu'#8287#8287#8287#8287#8287#8287
+      Color = clMenu
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Verdana'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = False
+      OnClick = btnVoltarClick
+      OnMouseEnter = btnVoltarMouseEnter
+      OnMouseLeave = btnVoltarMouseLeave
+      ExplicitWidth = 324
+      ExplicitHeight = 32
     end
   end
 end
