@@ -2,7 +2,8 @@ program Project1;
 
 uses
   Vcl.Forms,
-  uMain in 'uMain.pas' {Form1};
+  uMain in 'uMain.pas' {Form1},
+  uModels in 'uModels.pas';
 
 {$R *.res}
 
