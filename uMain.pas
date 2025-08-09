@@ -3,18 +3,20 @@ unit uMain;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uData,
+  uFormEstudante, Vcl.ExtCtrls;
 
 type
-  TForm1 = class(TForm)
-    PainelInicial: TPanel;
-    Titulo: TStaticText;
+  TFormMain = class(TForm)
     btnEstudantes: TButton;
     btnProfessores: TButton;
     btnDisciplinas: TButton;
     btnTurmas: TButton;
     btnMatriculas: TButton;
+    PainelInicial:TPanel;
+    Titulo: TStaticText;
+    procedure btnEstudantesClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -22,10 +24,15 @@ type
   end;
 
 var
-  Form1: TForm1;
+  FormMain: TFormMain;
 
 implementation
 
 {$R *.dfm}
 
+procedure TFormMain.btnEstudantesClick(Sender: TObject);
+begin
+  FormEstudante.Show;
+end;
 end.
+

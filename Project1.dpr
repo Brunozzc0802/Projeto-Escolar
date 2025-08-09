@@ -2,14 +2,17 @@ program Project1;
 
 uses
   Vcl.Forms,
-  uMain in 'uMain.pas' {Form1},
-  uModels in 'uModels.pas';
+  uMain in 'uMain.pas' {FormMain},
+  uModels in 'uModels.pas',
+  uData in 'uData.pas',
+  uFormEstudante in 'uFormEstudante.pas' {FormEstudante};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFormMain, FormMain);
+  Application.CreateForm(TFormEstudante, FormEstudante);
   Application.Run;
 end.

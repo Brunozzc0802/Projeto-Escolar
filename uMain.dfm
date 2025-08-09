@@ -1,7 +1,7 @@
-object Form1: TForm1
+object FormMain: TFormMain
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = 'FormMain'
   ClientHeight = 654
   ClientWidth = 886
   Color = clBtnFace
@@ -12,8 +12,8 @@ object Form1: TForm1
   Font.Style = []
   TextHeight = 15
   object PainelInicial: TPanel
-    Left = 128
-    Top = 40
+    Left = 136
+    Top = 88
     Width = 489
     Height = 433
     Color = 15395562
@@ -38,7 +38,6 @@ object Form1: TForm1
       ParentFont = False
       TabOrder = 0
       ExplicitLeft = 0
-      ExplicitTop = 0
     end
     object btnEstudantes: TButton
       AlignWithMargins = True
@@ -58,6 +57,7 @@ object Form1: TForm1
       Font.Style = []
       ParentFont = False
       TabOrder = 1
+      OnClick = btnEstudantesClick
     end
     object btnProfessores: TButton
       AlignWithMargins = True
