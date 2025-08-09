@@ -23,6 +23,7 @@ type
     procedure btnAtualizarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
+    procedure btnBaixarArquivosClick(Sender: TObject);
   private
     procedure AtualizarGrid;
   public
@@ -93,6 +94,12 @@ procedure TFormEstudante.btnAtualizarClick(Sender: TObject);
 begin
   Close;
 end;
+
+procedure TFormEstudante.btnBaixarArquivosClick(Sender: TObject);
+  begin
+    DM.SalvarTudo;
+    ShowMessage('Arquivos Baixados Com Sucesso')
+  end;
 
 procedure TFormEstudante.btnExcluirClick(Sender: TObject);
 var

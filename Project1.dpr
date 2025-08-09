@@ -4,8 +4,8 @@ uses
   Vcl.Forms,
   uMain in 'uMain.pas' {FormMain},
   uModels in 'uModels.pas',
-  uData in 'uData.pas',
-  uFormEstudante in 'uFormEstudante.pas' {FormEstudante};
+  uFormEstudante in 'uFormEstudante.pas' {FormEstudante},
+  uData in 'uData.pas';
 
 {$R *.res}
 

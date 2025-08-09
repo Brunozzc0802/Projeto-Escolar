@@ -1,0 +1,206 @@
+unit uModels;
+
+interface
+
+uses
+  System.Classes, System.SysUtils;
+
+type
+  TEstudante = class
+  private
+    FCodigo: Integer;
+    FNome: string;
+  public
+    constructor Create(ACodigo: Integer; const ANome: string);
+    function ToCSV: string;
+    class function FromCSV(const S: string): TEstudante;
+    property Codigo: Integer read FCodigo write FCodigo;
+    property Nome: string read FNome write FNome;
+  end;
+
+  TProfessor = class
+  private
+    FCodigo: Integer;
+    FNome: string;
+    FCPF: string;
+  public
+    constructor Create(ACodigo: Integer; const ANome, ACPF: string);
+    function ToCSV: string;
+    class function FromCSV(const S: string): TProfessor;
+    property Codigo: Integer read FCodigo write FCodigo;
+    property Nome: string read FNome write FNome;
+    property CPF: string read FCPF write FCPF;
+  end;
+
+  TDisciplina = class
+  private
+    FCodigo: Integer;
+    FNome: string;
+  public
+    constructor Create(ACodigo: Integer; const ANome: string);
+    function ToCSV: string;
+    class function FromCSV(const S: string): TDisciplina;
+    property Codigo: Integer read FCodigo write FCodigo;
+    property Nome: string read FNome write FNome;
+  end;
+
+  TTurma = class
+  private
+    FCodigo: Integer;
+    FCodigoProfessor: Integer;
+    FCodigoDisciplina: Integer;
+  public
+    constructor Create(ACodigo, ACodProf, ACodDisc: Integer);
+    function ToCSV: string;
+    class function FromCSV(const S: string): TTurma;
+    property Codigo: Integer read FCodigo write FCodigo;
+    property CodigoProfessor: Integer read FCodigoProfessor write FCodigoProfessor;
+    property CodigoDisciplina: Integer read FCodigoDisciplina write FCodigoDisciplina;
+  end;
+
+  TMatricula = class
+  private
+    FCodigo: Integer;
+    FCodigoTurma: Integer;
+    FCodigoEstudante: Integer;
+  public
+    constructor Create(ACodigo, ACodTurma, ACodAluno: Integer);
+    function ToCSV: string;
+    class function FromCSV(const S: string): TMatricula;
+    property Codigo: Integer read FCodigo write FCodigo;
+    property CodigoTurma: Integer read FCodigoTurma write FCodigoTurma;
+    property CodigoEstudante: Integer read FCodigoEstudante write FCodigoEstudante;
+  end;
+
+implementation
+
+{ TEstudante }
+
+constructor TEstudante.Create(ACodigo: Integer; const ANome: string);
+begin
+  FCodigo := ACodigo;
+  FNome := ANome;
+end;
+
+function TEstudante.ToCSV: string;
+begin
+  Result := IntToStr(FCodigo) + ';' + FNome;
+end;
+
+class function TEstudante.FromCSV(const S: string): TEstudante;
+var
+  parts: TArray<string>;
+  c, i: Integer;
+begin
+  parts := S.Split([';']);
+  if Length(parts) < 2 then
+    raise Exception.Create('Formato inválido Estudante');
+  if not TryStrToInt(parts[0], c) then
+    raise Exception.Create('Código inválido Estudante');
+  i := c;
+  Result := TEstudante.Create(i, parts[1]);
+end;
+
+{ TProfessor }
+
+constructor TProfessor.Create(ACodigo: Integer; const ANome, ACPF: string);
+begin
+  FCodigo := ACodigo;
+  FNome := ANome;
+  FCPF := ACPF;
+end;
+
+function TProfessor.ToCSV: string;
+begin
+  Result := IntToStr(FCodigo) + ';' + FNome + ';' + FCPF;
+end;
+
+class function TProfessor.FromCSV(const S: string): TProfessor;
+var parts: TArray<string>; c: Integer;
+begin
+  parts := S.Split([';']);
+  if Length(parts) < 3 then
+    raise Exception.Create('Formato inválido Professor');
+  if not TryStrToInt(parts[0], c) then
+    raise Exception.Create('Código inválido Professor');
+  Result := TProfessor.Create(c, parts[1], parts[2]);
+end;
+
+{ TDisciplina }
+
+constructor TDisciplina.Create(ACodigo: Integer; const ANome: string);
+begin
+  FCodigo := ACodigo;
+  FNome := ANome;
+end;
+
+function TDisciplina.ToCSV: string;
+begin
+  Result := IntToStr(FCodigo) + ';' + FNome;
+end;
+
+class function TDisciplina.FromCSV(const S: string): TDisciplina;
+var parts: TArray<string>; c: Integer;
+begin
+  parts := S.Split([';']);
+  if Length(parts) < 2 then
+    raise Exception.Create('Formato inválido Disciplina');
+  if not TryStrToInt(parts[0], c) then
+    raise Exception.Create('Código inválido Disciplina');
+  Result := TDisciplina.Create(c, parts[1]);
+end;
+
+{ TTurma }
+
+constructor TTurma.Create(ACodigo, ACodProf, ACodDisc: Integer);
+begin
+  FCodigo := ACodigo;
+  FCodigoProfessor := ACodProf;
+  FCodigoDisciplina := ACodDisc;
+end;
+
+function TTurma.ToCSV: string;
+begin
+  Result := IntToStr(FCodigo) + ';' + IntToStr(FCodigoProfessor) + ';' + IntToStr(FCodigoDisciplina);
+end;
+
+class function TTurma.FromCSV(const S: string): TTurma;
+var parts: TArray<string>; c, p, d: Integer;
+begin
+  parts := S.Split([';']);
+  if Length(parts) < 3 then
+    raise Exception.Create('Formato inválido Turma');
+  if not TryStrToInt(parts[0], c) then raise Exception.Create('Código inválido Turma');
+  if not TryStrToInt(parts[1], p) then raise Exception.Create('Código Professor inválido Turma');
+  if not TryStrToInt(parts[2], d) then raise Exception.Create('Código Disciplina inválido Turma');
+  Result := TTurma.Create(c, p, d);
+end;
+
+{ TMatricula }
+
+constructor TMatricula.Create(ACodigo, ACodTurma, ACodAluno: Integer);
+begin
+  FCodigo := ACodigo;
+  FCodigoTurma := ACodTurma;
+  FCodigoEstudante := ACodAluno;
+end;
+
+function TMatricula.ToCSV: string;
+begin
+  Result := IntToStr(FCodigo) + ';' + IntToStr(FCodigoTurma) + ';' + IntToStr(FCodigoEstudante);
+end;
+
+class function TMatricula.FromCSV(const S: string): TMatricula;
+var parts: TArray<string>; c, t, a: Integer;
+begin
+  parts := S.Split([';']);
+  if Length(parts) < 3 then
+    raise Exception.Create('Formato inválido Matrícula');
+  if not TryStrToInt(parts[0], c) then raise Exception.Create('Código inválido Matrícula');
+  if not TryStrToInt(parts[1], t) then raise Exception.Create('Código Turma inválido Matrícula');
+  if not TryStrToInt(parts[2], a) then raise Exception.Create('Código Estudante inválido Matrícula');
+  Result := TMatricula.Create(c, t, a);
+end;
+
+end.
+

@@ -128,11 +128,11 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uModels.pas"/>
-        <DCCReference Include="uData.pas"/>
         <DCCReference Include="uFormEstudante.pas">
             <Form>FormEstudante</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="uData.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

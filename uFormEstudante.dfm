@@ -58,8 +58,6 @@ object FormEstudante: TFormEstudante
         ParentFont = False
         TabOrder = 0
         OnClick = btnAdicionarClick
-        ExplicitWidth = 75
-        ExplicitHeight = 25
       end
       object btnEditar: TButton
         AlignWithMargins = True
@@ -81,9 +79,6 @@ object FormEstudante: TFormEstudante
         ParentFont = False
         TabOrder = 1
         OnClick = btnEditarClick
-        ExplicitLeft = 16
-        ExplicitTop = 56
-        ExplicitWidth = 146
       end
       object btnExcluir: TButton
         AlignWithMargins = True
@@ -105,9 +100,6 @@ object FormEstudante: TFormEstudante
         ParentFont = False
         TabOrder = 2
         OnClick = btnExcluirClick
-        ExplicitLeft = 176
-        ExplicitTop = 48
-        ExplicitWidth = 146
       end
       object btnAtualizar: TButton
         AlignWithMargins = True
@@ -129,8 +121,6 @@ object FormEstudante: TFormEstudante
         ParentFont = False
         TabOrder = 3
         OnClick = btnAtualizarClick
-        ExplicitLeft = 338
-        ExplicitTop = 64
       end
     end
     object sgEstudantes: TStringGrid
@@ -162,6 +152,7 @@ object FormEstudante: TFormEstudante
       Font.Style = []
       ParentFont = False
       TabOrder = 3
+      OnClick = btnBaixarArquivosClick
     end
   end
 end

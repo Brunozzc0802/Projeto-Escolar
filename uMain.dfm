@@ -37,7 +37,6 @@ object FormMain: TFormMain
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
-      ExplicitLeft = 0
     end
     object btnEstudantes: TButton
       AlignWithMargins = True
