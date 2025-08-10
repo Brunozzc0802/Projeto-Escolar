@@ -42,8 +42,8 @@ begin
 
   sgEstudantes.RowCount := 2;
   sgEstudantes.ColCount := 2;
-  sgEstudantes.Cells[0,0] := 'Código';
-  sgEstudantes.Cells[1,0] := 'Nome';
+  sgEstudantes.Cells[0,0] := 'Código Estudante';
+  sgEstudantes.Cells[1,0] := 'Nome Estudante';
   AtualizarGrid;
 end;
 
@@ -54,8 +54,8 @@ var
   i: Integer;
 begin
   sgEstudantes.RowCount := DM.Estudantes.Count + 1;
-  sgEstudantes.Cells[0,0] := 'Código';
-  sgEstudantes.Cells[1,0] := 'Nome';
+  sgEstudantes.Cells[0,0] := 'Código Estudante';
+  sgEstudantes.Cells[1,0] := 'Nome Estudante';
   for i := 0 to DM.Estudantes.Count - 1 do
   begin
     sgEstudantes.Cells[0, i+1] := IntToStr(DM.Estudantes[i].Codigo);
@@ -72,18 +72,18 @@ begin
   if sCode = '' then Exit;
   if not TryStrToInt(sCode, code) then
   begin
-    ShowMessage('Código inválido');
+    ShowMessage('Código do Estudante inválido');
     Exit;
   end;
   if DM.CodigoEstudanteExiste(code) then
   begin
-    ShowMessage('Código já existe.');
+    ShowMessage('Código já está vinculado á um estudante');
     Exit;
   end;
   sName := InputBox('Adicionar', 'Nome:', '');
   if Trim(sName) = '' then
   begin
-    ShowMessage('Nome obrigatório');
+    ShowMessage('Nome do estudante é obrigatório');
     Exit;
   end;
   DM.Estudantes.Add(TEstudante.Create(code, sName));

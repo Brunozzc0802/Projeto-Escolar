@@ -6,7 +6,8 @@ uses
   uModels in 'uModels.pas',
   uFormEstudante in 'uFormEstudante.pas' {FormEstudante},
   uData in 'uData.pas',
-  uFormProfessores in 'uFormProfessores.pas' {FormProfessor};
+  uFormProfessores in 'uFormProfessores.pas' {FormProfessor},
+  uDisciplinas in 'uDisciplinas.pas' {FormDisciplina};
 
 {$R *.res}
 
@@ -16,5 +17,6 @@ begin
   Application.CreateForm(TFormMain, FormMain);
   Application.CreateForm(TFormEstudante, FormEstudante);
   Application.CreateForm(TFormProfessor, FormProfessor);
+  Application.CreateForm(TFormDisciplina, FormDisciplina);
   Application.Run;
 end.

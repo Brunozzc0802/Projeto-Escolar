@@ -3,7 +3,7 @@ object FormProfessor: TFormProfessor
   Top = 0
   Caption = 'FormProfessores'
   ClientHeight = 710
-  ClientWidth = 957
+  ClientWidth = 942
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -122,21 +122,6 @@ object FormProfessor: TFormProfessor
         OnClick = btnAtualizarClick
       end
     end
-    object sgProfessores: TStringGrid
-      Left = 24
-      Top = 64
-      Width = 665
-      Height = 330
-      Color = clMenu
-      ColCount = 3
-      DefaultColWidth = 219
-      DefaultColAlignment = taCenter
-      DefaultRowHeight = 25
-      FixedCols = 0
-      RowCount = 2
-      FixedRows = 0
-      TabOrder = 2
-    end
     object btnBaixarArquivos: TButton
       Left = 24
       Top = 408
@@ -149,8 +134,24 @@ object FormProfessor: TFormProfessor
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 2
       OnClick = btnBaixarArquivosClick
+    end
+    object sgProfessores: TStringGrid
+      Left = 24
+      Top = 72
+      Width = 665
+      Height = 330
+      Color = clMenu
+      ColCount = 3
+      DefaultColWidth = 219
+      DefaultColAlignment = taCenter
+      RowCount = 2
+      FixedRows = 0
+      TabOrder = 3
+      RowHeights = (
+        24
+        24)
     end
   end
 end

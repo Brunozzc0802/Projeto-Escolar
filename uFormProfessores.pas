@@ -9,7 +9,6 @@ uses
 
 type
   TFormProfessor = class(TForm)
-    sgProfessores: TStringGrid;
     btnAdicionar: TButton;
     btnEditar: TButton;
     btnExcluir: TButton;
@@ -18,6 +17,7 @@ type
     PainelProfessor: TPanel;
     MenuProfessor: TStaticText;
     PainelBotoes: TPanel;
+    sgProfessores: TStringGrid;
     procedure FormCreate(Sender: TObject);
     procedure btnAdicionarClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
