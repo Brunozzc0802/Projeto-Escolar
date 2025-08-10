@@ -140,6 +140,7 @@ object FormMain: TFormMain
       Font.Style = []
       ParentFont = False
       TabOrder = 5
+      OnClick = btnMatriculasClick
     end
   end
 end
