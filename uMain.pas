@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  uFormEstudante, Vcl.ExtCtrls,uData;
+  uFormEstudante, Vcl.ExtCtrls,uData,uFormProfessores;
 
 type
   TFormMain = class(TForm)
@@ -18,6 +18,7 @@ type
     Titulo: TStaticText;
     procedure btnEstudantesClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure btnProfessoresClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -35,6 +36,11 @@ procedure TFormMain.btnEstudantesClick(Sender: TObject);
 begin
   FormEstudante.Show;
 end;
+
+procedure TFormMain.btnProfessoresClick(Sender: TObject);
+  begin
+    FormProfessor.Show;
+  end;
 
 procedure TFormMain.FormCreate(Sender: TObject);
 begin

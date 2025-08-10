@@ -5,7 +5,8 @@ uses
   uMain in 'uMain.pas' {FormMain},
   uModels in 'uModels.pas',
   uFormEstudante in 'uFormEstudante.pas' {FormEstudante},
-  uData in 'uData.pas';
+  uData in 'uData.pas',
+  uFormProfessores in 'uFormProfessores.pas' {FormProfessor};
 
 {$R *.res}
 
@@ -14,5 +15,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFormMain, FormMain);
   Application.CreateForm(TFormEstudante, FormEstudante);
+  Application.CreateForm(TFormProfessor, FormProfessor);
   Application.Run;
 end.

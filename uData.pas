@@ -77,6 +77,50 @@ begin
   finally
     sl.Free;
   end;
+
+  begin
+    sl := TStringList.Create;
+    try
+      for i := 0 to FProfessores.Count - 1 do
+        sl.Add(FProfessores[i].ToCSV);
+        sl.SaveToFile(GetAppPath + 'professores.txt', TEncoding.UTF8);
+    finally
+      sl.Free;
+    end;
+  end;
+  begin
+  sl := TStringList.Create;
+     try
+      for i := 0 to FDisciplinas.Count - 1 do
+        sl.Add(FDisciplinas[i].ToCSV);
+        sl.SaveToFile(GetAppPath + 'disciplinas.txt', TEncoding.UTF8);
+    finally
+      sl.Free;
+    end;
+  end;
+
+  begin
+  sl := TStringList.Create;
+     try
+      for i := 0 to FTurmas.Count - 1 do
+        sl.Add(FTurmas[i].ToCSV);
+        sl.SaveToFile(GetAppPath + 'turmas.txt', TEncoding.UTF8);
+    finally
+      sl.Free;
+    end;
+  end;
+
+   begin
+  sl := TStringList.Create;
+     try
+      for i := 0 to FMatriculas.Count - 1 do
+        sl.Add(FMatriculas[i].ToCSV);
+        sl.SaveToFile(GetAppPath + 'matriculas.txt', TEncoding.UTF8);
+    finally
+      sl.Free;
+    end;
+  end;
+
 end;
 
 procedure TDataModuleSimple.CarregarTudo;
@@ -84,12 +128,12 @@ var
   sl: TStringList;
   i: Integer;
 begin
-  // Estudantes
+
   sl := TStringList.Create;
   try
-    if FileExists('Estudantes') then
+    if FileExists('estudantes.txt') then
     begin
-      sl.LoadFromFile('Estudantes', TEncoding.UTF8);
+      sl.LoadFromFile('estudantes.txt', TEncoding.UTF8);
       for i := 0 to sl.Count - 1 do
       try
         FEstudantes.Add(TEstudante.FromCSV(sl[i]));
@@ -102,7 +146,7 @@ begin
     sl.Free;
   end;
 
-  // Professores
+
   sl := TStringList.Create;
   try
     if FileExists('Professores') then
@@ -120,7 +164,7 @@ begin
     sl.Free;
   end;
 
-  // Disciplinas
+
   sl := TStringList.Create;
   try
     if FileExists('Disciplinas') then
@@ -138,7 +182,7 @@ begin
     sl.Free;
   end;
 
-  // Turmas
+
   sl := TStringList.Create;
   try
     if FileExists('Turmas') then
@@ -156,7 +200,7 @@ begin
     sl.Free;
   end;
 
-  // Matrículas
+
   sl := TStringList.Create;
   try
     if FileExists('Matriculas') then

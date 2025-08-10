@@ -77,6 +77,7 @@ object FormMain: TFormMain
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      OnClick = btnProfessoresClick
     end
     object btnDisciplinas: TButton
       AlignWithMargins = True

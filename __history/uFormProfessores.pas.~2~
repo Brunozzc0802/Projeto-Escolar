@@ -1,0 +1,121 @@
+unit uFormProfessores;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.StdCtrls,
+  Vcl.ExtCtrls, uData, uModels;
+
+type
+  TFormProfessor = class(TForm)
+    sgProfessores: TStringGrid;
+    btnAdicionar: TButton;
+    btnEditar: TButton;
+    btnExcluir: TButton;
+    btnAtualizar: TButton;
+    btnBaixarArquivos: TButton;
+    PainelProfessor: TPanel;
+    MenuProfessor: TStaticText;
+    PainelBotoes: TPanel;
+    procedure FormCreate(Sender: TObject);
+    procedure btnAdicionarClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnAtualizarClick(Sender: TObject);
+    procedure btnBaixarArquivosClick(Sender: TObject);
+  private
+    procedure AtualizarGrid;
+  public
+  end;
+
+var
+  FormProfessor: TFormProfessor;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFormProfessor.FormCreate(Sender: TObject);
+begin
+  sgProfessores.ColCount := 3;
+  sgProfessores.RowCount := 2;
+  sgProfessores.Cells[0,0] := 'Código';
+  sgProfessores.Cells[1,0] := 'Nome';
+  sgProfessores.Cells[2,0] := 'CPF';
+  AtualizarGrid;
+end;
+
+procedure TFormProfessor.AtualizarGrid;
+var
+  i: Integer;
+begin
+  sgProfessores.RowCount := DM.Professores.Count + 1;
+  sgProfessores.Cells[0,0] := 'Código';
+  sgProfessores.Cells[1,0] := 'Nome';
+  sgProfessores.Cells[2,0] := 'CPF';
+  for i := 0 to DM.Professores.Count - 1 do
+  begin
+    sgProfessores.Cells[0, i+1] := IntToStr(DM.Professores[i].Codigo);
+    sgProfessores.Cells[1, i+1] := DM.Professores[i].Nome;
+    sgProfessores.Cells[2, i+1] := DM.Professores[i].CPF;
+  end;
+end;
+
+procedure TFormProfessor.btnAdicionarClick(Sender: TObject);
+var
+  sCode, sName, sCPF: string;
+  code: Integer;
+begin
+  sCode := InputBox('Adicionar', 'Código:', '');
+  if not TryStrToInt(sCode, code) then Exit;
+  if DM.CodigoProfessorExiste(code) then
+  begin
+    ShowMessage('Código já existe.');
+    Exit;
+  end;
+
+  sName := InputBox('Adicionar', 'Nome:', '');
+  sCPF := InputBox('Adicionar', 'CPF:', '');
+  DM.Professores.Add(TProfessor.Create(code, sName, sCPF));
+  AtualizarGrid;
+end;
+
+procedure TFormProfessor.btnEditarClick(Sender: TObject);
+var
+  idx: Integer;
+  newName, newCPF: string;
+begin
+  idx := sgProfessores.Row - 1;
+  if idx < 0 then Exit;
+
+  newName := InputBox('Editar', 'Nome:', DM.Professores[idx].Nome);
+  newCPF := InputBox('Editar', 'CPF:', DM.Professores[idx].CPF);
+  DM.Professores[idx].Nome := newName;
+  DM.Professores[idx].CPF := newCPF;
+  AtualizarGrid;
+end;
+
+procedure TFormProfessor.btnExcluirClick(Sender: TObject);
+var
+  idx: Integer;
+begin
+  idx := sgProfessores.Row - 1;
+  if idx < 0 then Exit;
+  DM.Professores.Delete(idx);
+  AtualizarGrid;
+end;
+
+procedure TFormProfessor.btnAtualizarClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TFormProfessor.btnBaixarArquivosClick(Sender: TObject);
+begin
+  DM.SalvarTudo;
+  ShowMessage('Arquivos salvos com sucesso!');
+end;
+
+end.
+
