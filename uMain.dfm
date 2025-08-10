@@ -119,6 +119,7 @@ object FormMain: TFormMain
       Font.Style = []
       ParentFont = False
       TabOrder = 4
+      OnClick = btnTurmasClick
     end
     object btnMatriculas: TButton
       AlignWithMargins = True
