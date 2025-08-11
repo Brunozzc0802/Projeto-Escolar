@@ -2,8 +2,8 @@ object FormEstudante: TFormEstudante
   Left = 0
   Top = 0
   Caption = 'FormEstudante'
-  ClientHeight = 643
-  ClientWidth = 858
+  ClientHeight = 699
+  ClientWidth = 947
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,7 +16,7 @@ object FormEstudante: TFormEstudante
     Left = 56
     Top = 32
     Width = 713
-    Height = 561
+    Height = 545
     Caption = 'PainelEstudante'
     TabOrder = 0
     object MenuEstudante: TStaticText
@@ -35,7 +35,7 @@ object FormEstudante: TFormEstudante
     end
     object PainelBotoes: TPanel
       Left = 24
-      Top = 464
+      Top = 447
       Width = 665
       Height = 81
       TabOrder = 1
@@ -126,7 +126,7 @@ object FormEstudante: TFormEstudante
     end
     object sgEstudantes: TStringGrid
       Left = 24
-      Top = 64
+      Top = 56
       Width = 665
       Height = 330
       Color = clMenu
@@ -142,10 +142,10 @@ object FormEstudante: TFormEstudante
     end
     object btnBaixarArquivos: TButton
       Left = 24
-      Top = 408
+      Top = 392
       Width = 665
       Height = 41
-      Caption = 'Baixar Arquivos .txt'
+      Caption = 'Atualizar Arquivos'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -24

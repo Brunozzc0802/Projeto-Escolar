@@ -123,21 +123,6 @@ object FormTurma: TFormTurma
         OnClick = btnAtualizarClick
       end
     end
-    object btnBaixarArquivos: TButton
-      Left = 24
-      Top = 408
-      Width = 665
-      Height = 41
-      Caption = 'Baixar Arquivos .txt'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Segoe UI'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 2
-      OnClick = btnBaixarArquivosClick
-    end
     object sgTurmas: TStringGrid
       Left = 24
       Top = 72
@@ -149,10 +134,25 @@ object FormTurma: TFormTurma
       DefaultColAlignment = taCenter
       RowCount = 2
       FixedRows = 0
-      TabOrder = 3
+      TabOrder = 2
       RowHeights = (
         24
         24)
+    end
+    object btnBaixarArquivos: TButton
+      Left = 24
+      Top = 408
+      Width = 665
+      Height = 41
+      Caption = 'Atualizar Arquivos'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+      OnClick = btnBaixarArquivosClick
     end
   end
 end

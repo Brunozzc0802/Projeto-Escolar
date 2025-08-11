@@ -1,0 +1,195 @@
+unit uFormTurmas;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.StdCtrls,
+  Vcl.ExtCtrls, uData, uModels;
+
+type
+  TFormTurma = class(TForm)
+    sgTurmas: TStringGrid;
+    btnAdicionar: TButton;
+    btnEditar: TButton;
+    btnExcluir: TButton;
+    btnAtualizar: TButton;
+    PainelBotoes: TPanel;
+    MenuTurmas: TStaticText;
+    btnBaixarArquivos: TButton;
+    procedure FormCreate(Sender: TObject);
+    procedure btnAdicionarClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnAtualizarClick(Sender: TObject);
+    procedure btnBaixarArquivosClick(Sender: TObject);
+  private
+    procedure AtualizarGrid;
+  public
+  end;
+
+var
+  FormTurma: TFormTurma;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFormTurma.FormCreate(Sender: TObject);
+begin
+  sgTurmas.ColCount := 3;
+  sgTurmas.RowCount := 2;
+  sgTurmas.Cells[0,0] := 'Código';
+  sgTurmas.Cells[1,0] := 'Cód. Professor';
+  sgTurmas.Cells[2,0] := 'Cód. Disciplina';
+  AtualizarGrid;
+end;
+
+
+procedure TFormTurma.AtualizarGrid;
+var
+  i: Integer;
+begin
+  sgTurmas.RowCount := DM.Turmas.Count + 1;
+  sgTurmas.Cells[0,0] := 'Código';
+  sgTurmas.Cells[1,0] := 'Cód. Professor';
+  sgTurmas.Cells[2,0] := 'Cód. Disciplina';
+  for i := 0 to DM.Turmas.Count - 1 do
+  begin
+    sgTurmas.Cells[0, i+1] := IntToStr(DM.Turmas[i].Codigo);
+    sgTurmas.Cells[1, i+1] := IntToStr(DM.Turmas[i].CodigoProfessor);
+    sgTurmas.Cells[2, i+1] := IntToStr(DM.Turmas[i].CodigoDisciplina);
+  end;
+end;
+
+
+procedure TFormTurma.btnAdicionarClick(Sender: TObject);
+var
+  sCode, sCodProf, sCodDisc: string;
+  code, codProf, codDisc: Integer;
+begin
+
+  sCode := InputBox('Adicionar', 'Código Turma:', '');
+  if sCode = '' then Exit;
+
+  if not TryStrToInt(sCode, code) then
+  begin
+    ShowMessage('Código da turma inválido.');
+    Exit;
+  end;
+
+  if DM.CodigoTurmaExiste(code) then
+  begin
+    ShowMessage('Código já existe.');
+    Exit;
+  end;
+
+
+  repeat
+    sCodProf := InputBox('Adicionar', 'Código Professor:', '');
+    if sCodProf = '' then Exit;
+    if not TryStrToInt(sCodProf, codProf) then
+    begin
+      ShowMessage('Código do professor inválido. Tente novamente.');
+      Continue;
+    end;
+    if not DM.CodigoProfessorExiste(codProf) then
+    begin
+      ShowMessage('Código do professor não existe. Tente novamente.');
+      Continue;
+    end;
+    Break;
+  until False;
+
+
+  repeat
+    sCodDisc := InputBox('Adicionar', 'Código Disciplina:', '');
+    if sCodDisc = '' then Exit;
+    if not TryStrToInt(sCodDisc, codDisc) then
+    begin
+      ShowMessage('Código da disciplina inválido. Tente novamente.');
+      Continue;
+    end;
+    if not DM.CodigoDisciplinaExiste(codDisc) then
+    begin
+      ShowMessage('Código da disciplina não existe. Tente novamente.');
+      Continue;
+    end;
+    Break;
+  until False;
+
+  DM.Turmas.Add(TTurma.Create(code, codProf, codDisc));
+  AtualizarGrid;
+end;
+
+procedure TFormTurma.btnEditarClick(Sender: TObject);
+var
+  idx: Integer;
+  sCodProf, sCodDisc: string;
+  codProf, codDisc: Integer;
+begin
+  idx := sgTurmas.Row - 1;
+  if idx < 0 then Exit;
+
+
+  repeat
+    sCodProf := InputBox('Editar', 'Código Professor:', IntToStr(DM.Turmas[idx].CodigoProfessor));
+    if sCodProf = '' then Exit;
+    if not TryStrToInt(sCodProf, codProf) then
+    begin
+      ShowMessage('Código do professor inválido. Tente novamente.');
+      Continue;
+    end;
+    if not DM.CodigoProfessorExiste(codProf) then
+    begin
+      ShowMessage('Código do professor não existe. Tente novamente.');
+      Continue;
+    end;
+    Break;
+  until False;
+
+  repeat
+    sCodDisc := InputBox('Editar', 'Código Disciplina:', IntToStr(DM.Turmas[idx].CodigoDisciplina));
+    if sCodDisc = '' then Exit;
+    if not TryStrToInt(sCodDisc, codDisc) then
+    begin
+      ShowMessage('Código da disciplina inválido. Tente novamente.');
+      Continue;
+    end;
+    if not DM.CodigoDisciplinaExiste(codDisc) then
+    begin
+      ShowMessage('Código da disciplina não existe. Tente novamente.');
+      Continue;
+    end;
+    Break;
+  until False;
+
+  DM.Turmas[idx].CodigoProfessor := codProf;
+  DM.Turmas[idx].CodigoDisciplina := codDisc;
+  AtualizarGrid;
+end;
+
+
+procedure TFormTurma.btnExcluirClick(Sender: TObject);
+var
+  idx: Integer;
+begin
+  idx := sgTurmas.Row - 1;
+  if idx < 0 then Exit;
+  DM.Turmas.Delete(idx);
+  AtualizarGrid;
+end;
+
+procedure TFormTurma.btnAtualizarClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TFormTurma.btnBaixarArquivosClick(Sender: TObject);
+begin
+  DM.SalvarTudo;
+  ShowMessage('Arquivos baixados com sucesso!');
+end;
+
+end.
+

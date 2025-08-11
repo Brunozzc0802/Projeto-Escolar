@@ -128,7 +128,7 @@ object FormProfessor: TFormProfessor
       Top = 408
       Width = 665
       Height = 41
-      Caption = 'Baixar Arquivos .txt'
+      Caption = 'Atualizar Arquivos'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -24

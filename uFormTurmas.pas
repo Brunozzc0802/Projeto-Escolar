@@ -14,9 +14,9 @@ type
     btnEditar: TButton;
     btnExcluir: TButton;
     btnAtualizar: TButton;
-    btnBaixarArquivos: TButton;
     PainelBotoes: TPanel;
     MenuTurmas: TStaticText;
+    btnBaixarArquivos: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btnAdicionarClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -62,23 +62,61 @@ begin
   end;
 end;
 
+
 procedure TFormTurma.btnAdicionarClick(Sender: TObject);
 var
   sCode, sCodProf, sCodDisc: string;
   code, codProf, codDisc: Integer;
 begin
+
   sCode := InputBox('Adicionar', 'Código Turma:', '');
-  if not TryStrToInt(sCode, code) then Exit;
+  if sCode = '' then Exit;
+
+  if not TryStrToInt(sCode, code) then
+  begin
+    ShowMessage('Código da turma inválido.');
+    Exit;
+  end;
+
   if DM.CodigoTurmaExiste(code) then
   begin
     ShowMessage('Código já existe.');
     Exit;
   end;
 
-  sCodProf := InputBox('Adicionar', 'Código Professor:', '');
-  sCodDisc := InputBox('Adicionar', 'Código Disciplina:', '');
-  if not TryStrToInt(sCodProf, codProf) then Exit;
-  if not TryStrToInt(sCodDisc, codDisc) then Exit;
+
+  repeat
+    sCodProf := InputBox('Adicionar', 'Código Professor:', '');
+    if sCodProf = '' then Exit;
+    if not TryStrToInt(sCodProf, codProf) then
+    begin
+      ShowMessage('Código do professor inválido. Tente novamente.');
+      Continue;
+    end;
+    if not DM.CodigoProfessorExiste(codProf) then
+    begin
+      ShowMessage('Código do professor não existe. Tente novamente.');
+      Continue;
+    end;
+    Break;
+  until False;
+
+
+  repeat
+    sCodDisc := InputBox('Adicionar', 'Código Disciplina:', '');
+    if sCodDisc = '' then Exit;
+    if not TryStrToInt(sCodDisc, codDisc) then
+    begin
+      ShowMessage('Código da disciplina inválido. Tente novamente.');
+      Continue;
+    end;
+    if not DM.CodigoDisciplinaExiste(codDisc) then
+    begin
+      ShowMessage('Código da disciplina não existe. Tente novamente.');
+      Continue;
+    end;
+    Break;
+  until False;
 
   DM.Turmas.Add(TTurma.Create(code, codProf, codDisc));
   AtualizarGrid;
@@ -93,10 +131,38 @@ begin
   idx := sgTurmas.Row - 1;
   if idx < 0 then Exit;
 
-  sCodProf := InputBox('Editar', 'Código Professor:', IntToStr(DM.Turmas[idx].CodigoProfessor));
-  sCodDisc := InputBox('Editar', 'Código Disciplina:', IntToStr(DM.Turmas[idx].CodigoDisciplina));
-  if not TryStrToInt(sCodProf, codProf) then Exit;
-  if not TryStrToInt(sCodDisc, codDisc) then Exit;
+
+  repeat
+    sCodProf := InputBox('Editar', 'Código Professor:', IntToStr(DM.Turmas[idx].CodigoProfessor));
+    if sCodProf = '' then Exit;
+    if not TryStrToInt(sCodProf, codProf) then
+    begin
+      ShowMessage('Código do professor inválido. Tente novamente.');
+      Continue;
+    end;
+    if not DM.CodigoProfessorExiste(codProf) then
+    begin
+      ShowMessage('Código do professor não existe. Tente novamente.');
+      Continue;
+    end;
+    Break;
+  until False;
+
+  repeat
+    sCodDisc := InputBox('Editar', 'Código Disciplina:', IntToStr(DM.Turmas[idx].CodigoDisciplina));
+    if sCodDisc = '' then Exit;
+    if not TryStrToInt(sCodDisc, codDisc) then
+    begin
+      ShowMessage('Código da disciplina inválido. Tente novamente.');
+      Continue;
+    end;
+    if not DM.CodigoDisciplinaExiste(codDisc) then
+    begin
+      ShowMessage('Código da disciplina não existe. Tente novamente.');
+      Continue;
+    end;
+    Break;
+  until False;
 
   DM.Turmas[idx].CodigoProfessor := codProf;
   DM.Turmas[idx].CodigoDisciplina := codDisc;
@@ -105,13 +171,21 @@ end;
 
 procedure TFormTurma.btnExcluirClick(Sender: TObject);
 var
-  idx: Integer;
-begin
-  idx := sgTurmas.Row - 1;
-  if idx < 0 then Exit;
-  DM.Turmas.Delete(idx);
-  AtualizarGrid;
-end;
+  row, idx: Integer;
+  begin
+    row := sgTurmas.Row;
+    if row < 1 then
+    begin
+      ShowMessage('Selecione uma Turma para excluir.');
+      Exit;
+    end;
+    idx := row - 1;
+     if MessageDlg('Tem certeza que deseja excluir essa turma?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
+     ShowMessage('Turma Excluída');
+      DM.Professores.Delete(idx);
+      AtualizarGrid;
+    end;
+  end;
 
 procedure TFormTurma.btnAtualizarClick(Sender: TObject);
 begin
@@ -121,7 +195,7 @@ end;
 procedure TFormTurma.btnBaixarArquivosClick(Sender: TObject);
 begin
   DM.SalvarTudo;
-  ShowMessage('Arquivos baixados com sucesso!');
+  ShowMessage('Arquivos Atualizados Com Sucesso');;
 end;
 
 end.

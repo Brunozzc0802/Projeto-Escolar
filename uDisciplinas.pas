@@ -15,9 +15,9 @@ type
     btnEditar: TButton;
     btnExcluir: TButton;
     btnAtualizar: TButton;
-    btnBaixarArquivos: TButton;
     PainelBotoes: TPanel;
     MenuDisciplinas: TStaticText;
+    btnBaixarArquivos: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btnAdicionarClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -37,79 +37,93 @@ implementation
 {$R *.dfm}
 
 procedure TFormDisciplina.FormCreate(Sender: TObject);
-begin
-  sgDisciplinas.ColCount := 2;
-  sgDisciplinas.RowCount := 2;
-  sgDisciplinas.Cells[0,0] := 'Código Disciplina';
-  sgDisciplinas.Cells[1,0] := 'Nome Disciplina';
-  AtualizarGrid;
-end;
+  begin
+    sgDisciplinas.ColCount := 2;
+    sgDisciplinas.RowCount := 2;
+    sgDisciplinas.Cells[0,0] := 'Código Disciplina';
+    sgDisciplinas.Cells[1,0] := 'Nome Disciplina';
+    AtualizarGrid;
+  end;
 
 procedure TFormDisciplina.AtualizarGrid;
 var
-  i: Integer;
-begin
-  sgDisciplinas.RowCount := DM.Disciplinas.Count + 1;
-  sgDisciplinas.Cells[0,0] := 'Código Disciplina';
-  sgDisciplinas.Cells[1,0] := 'Nome Disciplina';
-  for i := 0 to DM.Disciplinas.Count - 1 do
+i: Integer;
   begin
-    sgDisciplinas.Cells[0, i+1] := IntToStr(DM.Disciplinas[i].Codigo);
-    sgDisciplinas.Cells[1, i+1] := DM.Disciplinas[i].Nome;
+    sgDisciplinas.RowCount := DM.Disciplinas.Count + 1;
+    sgDisciplinas.Cells[0,0] := 'Código Disciplina';
+    sgDisciplinas.Cells[1,0] := 'Nome Disciplina';
+    for i := 0 to DM.Disciplinas.Count - 1 do
+    begin
+      sgDisciplinas.Cells[0, i+1] := IntToStr(DM.Disciplinas[i].Codigo);
+      sgDisciplinas.Cells[1, i+1] := DM.Disciplinas[i].Nome;
+    end;
   end;
-end;
 
 procedure TFormDisciplina.btnAdicionarClick(Sender: TObject);
 var
-  sCode, sName: string;
-  code: Integer;
-begin
-  sCode := InputBox('Adicionar', 'Código:', '');
-  if not TryStrToInt(sCode, code) then Exit;
-  if DM.CodigoDisciplinaExiste(code) then
+sCode, sName: string;
+code: Integer;
   begin
-    ShowMessage('Código já está vinculado á uma disciplina');
-    Exit;
-  end;
+    sCode := InputBox('Adicionar', 'Código:', '');
+    if not TryStrToInt(sCode, code) then Exit;
+    if DM.CodigoDisciplinaExiste(code) then
+    begin
+      ShowMessage('Código já está vinculado á uma disciplina');
+      Exit;
+    end;
 
-  sName := InputBox('Adicionar', 'Nome:', '');
-  DM.Disciplinas.Add(TDisciplina.Create(code, sName));
-  AtualizarGrid;
-end;
+    sName := InputBox('Adicionar', 'Nome:', '');
+    DM.Disciplinas.Add(TDisciplina.Create(code, sName));
+    AtualizarGrid;
+  end;
 
 procedure TFormDisciplina.btnEditarClick(Sender: TObject);
 var
-  idx: Integer;
-  newName: string;
-begin
-  idx := sgDisciplinas.Row - 1;
-  if idx < 0 then Exit;
+idx: Integer;
+newName: string;
+  begin
+    idx := sgDisciplinas.Row - 1;
+    if (idx < 0) or (idx >= DM.Disciplinas.Count) then
+    begin
+      ShowMessage('Selecione uma discilina para editar.');
+      Exit;
+    end;
 
-  newName := InputBox('Editar', 'Nome:', DM.Disciplinas[idx].Nome);
-  DM.Disciplinas[idx].Nome := newName;
-  AtualizarGrid;
-end;
+    idx := sgDisciplinas.Row - 1;
+    if idx < 0 then Exit;
+
+    newName := InputBox('Editar', 'Nome:', DM.Disciplinas[idx].Nome);
+    DM.Disciplinas[idx].Nome := newName;
+    AtualizarGrid;
+  end;
 
 procedure TFormDisciplina.btnExcluirClick(Sender: TObject);
 var
-  idx: Integer;
-begin
-  idx := sgDisciplinas.Row - 1;
-  if idx < 0 then Exit;
-  DM.Disciplinas.Delete(idx);
-  AtualizarGrid;
-end;
+  row, idx: Integer;
+  begin
+    row := sgDisciplinas.Row;
+    if row < 1 then
+    begin
+      ShowMessage('Selecione uma Disciplina para excluir.');
+      Exit;
+    end;
+    idx := row - 1;
+     if MessageDlg('Tem certeza que deseja excluir essa discplina?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
+     ShowMessage('Disciplina Excluída');
+      DM.Professores.Delete(idx);
+      AtualizarGrid;
+    end;
+  end;
 
 procedure TFormDisciplina.btnAtualizarClick(Sender: TObject);
-begin
-  Close;
-end;
+  begin
+    Close;
+  end;
 
 procedure TFormDisciplina.btnBaixarArquivosClick(Sender: TObject);
-begin
-  DM.SalvarTudo;
-  ShowMessage('Arquivos salvos com sucesso!');
-end;
-
+  begin
+    DM.SalvarTudo;
+    ShowMessage('Arquivos Atualizados Com Sucesso');
+  end;
 end.
 

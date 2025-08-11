@@ -48,7 +48,7 @@ procedure TFormEstudante.FormCreate(Sender: TObject);
 
 procedure TFormEstudante.AtualizarGrid;
 var
-  i: Integer;
+i: Integer;
   begin
     sgEstudantes.RowCount := DM.Estudantes.Count + 1;
     sgEstudantes.Cells[0,0] := 'Código Estudante';
@@ -62,8 +62,8 @@ var
 
 procedure TFormEstudante.btnAdicionarClick(Sender: TObject);
 var
-  sCode, sName: string;
-  code: Integer;
+sCode, sName: string;
+code: Integer;
   begin
       sCode := InputBox('Adicionar', 'Código:', '');
     if sCode = '' then Exit;
@@ -88,65 +88,66 @@ var
   end;
 
 procedure TFormEstudante.btnAtualizarClick(Sender: TObject);
-begin
-  Close;
-end;
+  begin
+    Close;
+  end;
 
 procedure TFormEstudante.btnBaixarArquivosClick(Sender: TObject);
   begin
     DM.SalvarTudo;
-    ShowMessage('Arquivos Baixados Com Sucesso')
+    ShowMessage('Arquivos Atualizados Com Sucesso');
   end;
 
 procedure TFormEstudante.btnExcluirClick(Sender: TObject);
 var
-  row, idx: Integer;
-begin
-  row := sgEstudantes.Row;
-  if row < 1 then
+row, idx: Integer;
   begin
-    ShowMessage('Selecione um estudante.');
-    Exit;
-  end;
-  idx := row - 1;
-  if MessageDlg('Confirma exclusão?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-  begin
+    row := sgEstudantes.Row;
+    if row < 1 then
+    begin
+      ShowMessage('Selecione um estudante para excluir.');
+      Exit;
+    end;
+    idx := row - 1;
+    if MessageDlg('Tem certeza que deseja excluir esse estudante?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+    begin
 
-    var i: Integer;
-    for i := 0 to DM.Matriculas.Count - 1 do
-      if DM.Matriculas[i].CodigoEstudante = DM.Estudantes[idx].Codigo then
-      begin
-        ShowMessage('Não Foi Possivel excluir: estudante possui matrícula.');
-        Exit;
-      end;
+      var i: Integer;
+      for i := 0 to DM.Matriculas.Count - 1 do
+        if DM.Matriculas[i].CodigoEstudante = DM.Estudantes[idx].Codigo then
+        begin
+          ShowMessage('Não Foi Possivel excluir esse estudante: ele possui matrícula.');
+          Exit;
+        end;
 
-    DM.Estudantes.Delete(idx);
-    AtualizarGrid;
+      DM.Estudantes.Delete(idx);
+      AtualizarGrid;
+    end;
   end;
-end;
+
 
 procedure TFormEstudante.btnEditarClick(Sender: TObject);
 var
-  row, idx: Integer;
-  newName: string;
-begin
-  row := sgEstudantes.Row;
-  if row < 1 then
+row, idx: Integer;
+newName: string;
   begin
-    ShowMessage('Selecione um estudante para editar.');
-    Exit;
+    row := sgEstudantes.Row;
+    if row < 1 then
+    begin
+      ShowMessage('Selecione um estudante para editar.');
+      Exit;
+    end;
+
+    idx := row - 1;
+
+    newName := InputBox('Editar', 'Nome:', DM.Estudantes[idx].Nome);
+    if Trim(newName) = '' then
+    begin
+      ShowMessage('O Nome é obrigatório');
+      Exit;
+    end;
+    DM.Estudantes[idx].Nome := newName;
+
+    AtualizarGrid;
   end;
-
-  idx := row - 1;
-
-  newName := InputBox('Editar', 'Nome:', DM.Estudantes[idx].Nome);
-  if Trim(newName) = '' then
-  begin
-    ShowMessage('O Nome é obrigatório');
-    Exit;
-  end;
-  DM.Estudantes[idx].Nome := newName;
-
-  AtualizarGrid;
-end;
 end.

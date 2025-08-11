@@ -14,9 +14,9 @@ type
     btnEditar: TButton;
     btnExcluir: TButton;
     btnAtualizar: TButton;
-    btnBaixarArquivos: TButton;
     PainelBotoes: TPanel;
      MenuMatriculas: TStaticText;
+    btnBaixarArquivos: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btnAdicionarClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -67,15 +67,50 @@ var
   code, codTurma, codAluno: Integer;
 begin
   sCode := InputBox('Adicionar', 'Código Matrícula:', '');
-  if not TryStrToInt(sCode, code) then Exit;
-  sCodTurma := InputBox('Adicionar', 'Código Turma:', '');
-  sCodAluno := InputBox('Adicionar', 'Código Estudante:', '');
-  if not TryStrToInt(sCodTurma, codTurma) then Exit;
-  if not TryStrToInt(sCodAluno, codAluno) then Exit;
+  if sCode = '' then Exit;
+
+  if not TryStrToInt(sCode, code) then
+  begin
+    ShowMessage('Código da matrícula inválido.');
+    Exit;
+  end;
+
+  repeat
+    sCodTurma := InputBox('Adicionar', 'Código Turma:', '');
+    if sCodTurma = '' then Exit;
+    if not TryStrToInt(sCodTurma, codTurma) then
+    begin
+      ShowMessage('Código da turma inválido. Tente novamente.');
+      Continue;
+    end;
+    if not DM.CodigoTurmaExiste(codTurma) then
+    begin
+      ShowMessage('Código da turma não existe. Tente novamente.');
+      Continue;
+    end;
+    Break;
+  until False;
+
+  repeat
+    sCodAluno := InputBox('Adicionar', 'Código Estudante:', '');
+    if sCodAluno = '' then Exit;
+    if not TryStrToInt(sCodAluno, codAluno) then
+    begin
+      ShowMessage('Código do estudante inválido. Tente novamente.');
+      Continue;
+    end;
+    if not DM.CodigoEstudanteExiste(codAluno) then
+    begin
+      ShowMessage('Código do estudante não existe. Tente novamente.');
+      Continue;
+    end;
+    Break;
+  until False;
 
   DM.Matriculas.Add(TMatricula.Create(code, codTurma, codAluno));
   AtualizarGrid;
 end;
+
 
 procedure TFormMatriculas.btnEditarClick(Sender: TObject);
 var
@@ -86,25 +121,61 @@ begin
   idx := sgMatriculas.Row - 1;
   if idx < 0 then Exit;
 
-  sCodTurma := InputBox('Editar', 'Código Turma:', IntToStr(DM.Matriculas[idx].CodigoTurma));
-  sCodAluno := InputBox('Editar', 'Código Estudante:', IntToStr(DM.Matriculas[idx].CodigoEstudante));
-  if not TryStrToInt(sCodTurma, codTurma) then Exit;
-  if not TryStrToInt(sCodAluno, codAluno) then Exit;
+  repeat
+    sCodTurma := InputBox('Editar', 'Código Turma:', IntToStr(DM.Matriculas[idx].CodigoTurma));
+    if sCodTurma = '' then Exit;
+    if not TryStrToInt(sCodTurma, codTurma) then
+    begin
+      ShowMessage('Código da turma inválido. Tente novamente.');
+      Continue;
+    end;
+    if not DM.CodigoTurmaExiste(codTurma) then
+    begin
+      ShowMessage('Código da turma não existe. Tente novamente.');
+      Continue;
+    end;
+    Break;
+  until False;
+
+  repeat
+    sCodAluno := InputBox('Editar', 'Código Estudante:', IntToStr(DM.Matriculas[idx].CodigoEstudante));
+    if sCodAluno = '' then Exit;
+    if not TryStrToInt(sCodAluno, codAluno) then
+    begin
+      ShowMessage('Código do estudante inválido. Tente novamente.');
+      Continue;
+    end;
+    if not DM.CodigoEstudanteExiste(codAluno) then
+    begin
+      ShowMessage('Código do estudante não existe. Tente novamente.');
+      Continue;
+    end;
+    Break;
+  until False;
 
   DM.Matriculas[idx].CodigoTurma := codTurma;
   DM.Matriculas[idx].CodigoEstudante := codAluno;
   AtualizarGrid;
 end;
 
+
 procedure TFormMatriculas.btnExcluirClick(Sender: TObject);
 var
-  idx: Integer;
-begin
-  idx := sgMatriculas.Row - 1;
-  if idx < 0 then Exit;
-  DM.Matriculas.Delete(idx);
-  AtualizarGrid;
-end;
+  row, idx: Integer;
+  begin
+    row := sgMatriculas.Row;
+    if row < 1 then
+    begin
+      ShowMessage('Selecione uma Matricula para excluir.');
+      Exit;
+    end;
+    idx := row - 1;
+     if MessageDlg('Tem Certeza Que deseja excluir essa Matricula?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
+     ShowMessage('Matricula Excluída');
+      DM.Professores.Delete(idx);
+      AtualizarGrid;
+    end;
+  end;
 
 procedure TFormMatriculas.btnAtualizarClick(Sender: TObject);
 begin
@@ -114,7 +185,7 @@ end;
 procedure TFormMatriculas.btnBaixarArquivosClick(Sender: TObject);
 begin
   DM.SalvarTudo;
-  ShowMessage('Arquivos salvos com sucesso!');
+  ShowMessage('Arquivos Atualizados Com Sucesso');
 end;
 end.
 

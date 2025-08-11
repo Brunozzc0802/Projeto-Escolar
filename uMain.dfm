@@ -13,8 +13,8 @@ object FormMain: TFormMain
   OnCreate = FormCreate
   TextHeight = 15
   object PainelInicial: TPanel
-    Left = 136
-    Top = 88
+    Left = 132
+    Top = 80
     Width = 489
     Height = 433
     Color = 15395562
@@ -142,6 +142,28 @@ object FormMain: TFormMain
       ParentFont = False
       TabOrder = 5
       OnClick = btnMatriculasClick
+    end
+    object btnEncerrarSistema: TBitBtn
+      AlignWithMargins = True
+      Left = 171
+      Top = 370
+      Width = 147
+      Height = 22
+      Margins.Left = 170
+      Margins.Top = 280
+      Margins.Right = 170
+      Margins.Bottom = 40
+      Align = alClient
+      Caption = 'Encerrar Sistema'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 6
+      OnClick = btnEncerrarSistemaClick
+      ExplicitLeft = 163
     end
   end
 end
