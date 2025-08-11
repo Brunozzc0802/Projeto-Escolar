@@ -72,7 +72,7 @@ begin
   sl := TStringList.Create;
   try
     for i := 0 to FEstudantes.Count - 1 do
-      sl.Add(FEstudantes[i].ToCSV);
+    sl.Add(FEstudantes[i].ToCSV);
     sl.SaveToFile(GetAppPath + 'estudantes.txt', TEncoding.UTF8);
   finally
     sl.Free;
@@ -120,7 +120,6 @@ begin
       sl.Free;
     end;
   end;
-
 end;
 
 procedure TDataModuleSimple.CarregarTudo;
@@ -129,9 +128,14 @@ var
   i: Integer;
 begin
 
+   FEstudantes.Clear;
+   FProfessores.Clear;
+   FDisciplinas.Clear;
+   FTurmas.Clear;
+   FMatriculas.Clear;
+
   sl := TStringList.Create;
   try
-    if FileExists('estudantes.txt') then
     begin
       sl.LoadFromFile('estudantes.txt', TEncoding.UTF8);
       for i := 0 to sl.Count - 1 do
@@ -139,7 +143,6 @@ begin
         FEstudantes.Add(TEstudante.FromCSV(sl[i]));
       except
         on E: Exception do
-
       end;
     end;
   finally
@@ -149,9 +152,8 @@ begin
 
   sl := TStringList.Create;
   try
-    if FileExists('Professores') then
     begin
-      sl.LoadFromFile('Professores', TEncoding.UTF8);
+      sl.LoadFromFile('professores.txt', TEncoding.UTF8);
       for i := 0 to sl.Count - 1 do
       try
         FProfessores.Add(TProfessor.FromCSV(sl[i]));
@@ -167,9 +169,8 @@ begin
 
   sl := TStringList.Create;
   try
-    if FileExists('Disciplinas') then
     begin
-      sl.LoadFromFile('Disciplinas', TEncoding.UTF8);
+      sl.LoadFromFile('disciplinas.txt', TEncoding.UTF8);
       for i := 0 to sl.Count - 1 do
       try
         FDisciplinas.Add(TDisciplina.FromCSV(sl[i]));
@@ -185,9 +186,8 @@ begin
 
   sl := TStringList.Create;
   try
-    if FileExists('Turmas') then
     begin
-      sl.LoadFromFile('Turmas', TEncoding.UTF8);
+      sl.LoadFromFile('turmas.txt', TEncoding.UTF8);
       for i := 0 to sl.Count - 1 do
       try
         FTurmas.Add(TTurma.FromCSV(sl[i]));
@@ -200,12 +200,10 @@ begin
     sl.Free;
   end;
 
-
   sl := TStringList.Create;
   try
-    if FileExists('Matriculas') then
     begin
-      sl.LoadFromFile('Matriculas', TEncoding.UTF8);
+      sl.LoadFromFile('matriculas.txt', TEncoding.UTF8);
       for i := 0 to sl.Count - 1 do
       try
         FMatriculas.Add(TMatricula.FromCSV(sl[i]));

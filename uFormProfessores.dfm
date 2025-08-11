@@ -10,6 +10,7 @@ object FormProfessor: TFormProfessor
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object PainelProfessor: TPanel
     Left = 96

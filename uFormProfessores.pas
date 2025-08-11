@@ -36,7 +36,6 @@ implementation
 
 {$R *.dfm}
 
-{ Helper local: verifica se a string tem exatamente 11 dígitos e só números }
 function CPFValido(const s: string): Boolean;
 var
   i: Integer;

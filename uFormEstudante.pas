@@ -38,57 +38,54 @@ implementation
 {$R *.dfm}
 
 procedure TFormEstudante.FormCreate(Sender: TObject);
-begin
-
-  sgEstudantes.RowCount := 2;
-  sgEstudantes.ColCount := 2;
-  sgEstudantes.Cells[0,0] := 'Código Estudante';
-  sgEstudantes.Cells[1,0] := 'Nome Estudante';
-  AtualizarGrid;
-end;
-
-
+  begin
+    sgEstudantes.RowCount := 2;
+    sgEstudantes.ColCount := 2;
+    sgEstudantes.Cells[0,0] := 'Código Estudante';
+    sgEstudantes.Cells[1,0] := 'Nome Estudante';
+    AtualizarGrid;
+  end;
 
 procedure TFormEstudante.AtualizarGrid;
 var
   i: Integer;
-begin
-  sgEstudantes.RowCount := DM.Estudantes.Count + 1;
-  sgEstudantes.Cells[0,0] := 'Código Estudante';
-  sgEstudantes.Cells[1,0] := 'Nome Estudante';
-  for i := 0 to DM.Estudantes.Count - 1 do
   begin
-    sgEstudantes.Cells[0, i+1] := IntToStr(DM.Estudantes[i].Codigo);
-    sgEstudantes.Cells[1, i+1] := DM.Estudantes[i].Nome;
+    sgEstudantes.RowCount := DM.Estudantes.Count + 1;
+    sgEstudantes.Cells[0,0] := 'Código Estudante';
+    sgEstudantes.Cells[1,0] := 'Nome Estudante';
+    for i := 0 to DM.Estudantes.Count - 1 do
+    begin
+      sgEstudantes.Cells[0, i+1] := IntToStr(DM.Estudantes[i].Codigo);
+      sgEstudantes.Cells[1, i+1] := DM.Estudantes[i].Nome;
+    end;
   end;
-end;
 
 procedure TFormEstudante.btnAdicionarClick(Sender: TObject);
 var
   sCode, sName: string;
   code: Integer;
-begin
-  sCode := InputBox('Adicionar', 'Código:', '');
-  if sCode = '' then Exit;
-  if not TryStrToInt(sCode, code) then
   begin
-    ShowMessage('Código do Estudante inválido');
-    Exit;
+      sCode := InputBox('Adicionar', 'Código:', '');
+    if sCode = '' then Exit;
+    if not TryStrToInt(sCode, code) then
+    begin
+      ShowMessage('Código do Estudante inválido');
+      Exit;
+    end;
+    if DM.CodigoEstudanteExiste(code) then
+    begin
+      ShowMessage('Código já está vinculado á um estudante');
+      Exit;
+    end;
+    sName := InputBox('Adicionar', 'Nome:', '');
+    if Trim(sName) = '' then
+    begin
+      ShowMessage('Nome do estudante é obrigatório');
+      Exit;
+    end;
+    DM.Estudantes.Add(TEstudante.Create(code, sName));
+    AtualizarGrid;
   end;
-  if DM.CodigoEstudanteExiste(code) then
-  begin
-    ShowMessage('Código já está vinculado á um estudante');
-    Exit;
-  end;
-  sName := InputBox('Adicionar', 'Nome:', '');
-  if Trim(sName) = '' then
-  begin
-    ShowMessage('Nome do estudante é obrigatório');
-    Exit;
-  end;
-  DM.Estudantes.Add(TEstudante.Create(code, sName));
-  AtualizarGrid;
-end;
 
 procedure TFormEstudante.btnAtualizarClick(Sender: TObject);
 begin

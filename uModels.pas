@@ -84,7 +84,7 @@ end;
 
 function TEstudante.ToCSV: string;
 begin
-  Result := IntToStr(FCodigo) + ';' + FNome;
+  Result := IntToStr(FCodigo) + '  |  ' + FNome;
 end;
 
 class function TEstudante.FromCSV(const S: string): TEstudante;
@@ -92,7 +92,7 @@ var
   parts: TArray<string>;
   c, i: Integer;
 begin
-  parts := S.Split([';']);
+  parts := S.Split(['  |  ']);
   if Length(parts) < 2 then
     raise Exception.Create('Formato inválido Estudante');
   if not TryStrToInt(parts[0], c) then
@@ -112,13 +112,13 @@ end;
 
 function TProfessor.ToCSV: string;
 begin
-  Result := IntToStr(FCodigo) + ';' + FNome + ';' + FCPF;
+  Result := IntToStr(FCodigo) + '  |  ' + FNome + '  |  ' + FCPF;
 end;
 
 class function TProfessor.FromCSV(const S: string): TProfessor;
 var parts: TArray<string>; c: Integer;
 begin
-  parts := S.Split([';']);
+  parts := S.Split(['  |  ']);
   if Length(parts) < 3 then
     raise Exception.Create('Formato inválido Professor');
   if not TryStrToInt(parts[0], c) then
@@ -136,13 +136,13 @@ end;
 
 function TDisciplina.ToCSV: string;
 begin
-  Result := IntToStr(FCodigo) + ';' + FNome;
+  Result := IntToStr(FCodigo) + '  |  ' + FNome;
 end;
 
 class function TDisciplina.FromCSV(const S: string): TDisciplina;
 var parts: TArray<string>; c: Integer;
 begin
-  parts := S.Split([';']);
+  parts := S.Split(['  |  ']);
   if Length(parts) < 2 then
     raise Exception.Create('Formato inválido Disciplina');
   if not TryStrToInt(parts[0], c) then
@@ -161,13 +161,13 @@ end;
 
 function TTurma.ToCSV: string;
 begin
-  Result := IntToStr(FCodigo) + ';' + IntToStr(FCodigoProfessor) + ';' + IntToStr(FCodigoDisciplina);
+  Result := IntToStr(FCodigo) + '  |  ' + IntToStr(FCodigoProfessor) + '  |  ' + IntToStr(FCodigoDisciplina);
 end;
 
 class function TTurma.FromCSV(const S: string): TTurma;
 var parts: TArray<string>; c, p, d: Integer;
 begin
-  parts := S.Split([';']);
+  parts := S.Split(['  |  ']);
   if Length(parts) < 3 then
     raise Exception.Create('Formato inválido Turma');
   if not TryStrToInt(parts[0], c) then raise Exception.Create('Código inválido Turma');
@@ -187,13 +187,14 @@ end;
 
 function TMatricula.ToCSV: string;
 begin
-  Result := IntToStr(FCodigo) + ';' + IntToStr(FCodigoTurma) + ';' + IntToStr(FCodigoEstudante);
+  Result := IntToStr(FCodigo) + '  |  ' + IntToStr(FCodigoTurma) + '  |  '
+  + IntToStr(FCodigoEstudante);
 end;
 
 class function TMatricula.FromCSV(const S: string): TMatricula;
 var parts: TArray<string>; c, t, a: Integer;
 begin
-  parts := S.Split([';']);
+  parts := S.Split(['  |  ']);
   if Length(parts) < 3 then
     raise Exception.Create('Formato inválido Matrícula');
   if not TryStrToInt(parts[0], c) then raise Exception.Create('Código inválido Matrícula');

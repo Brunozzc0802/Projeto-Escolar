@@ -10,6 +10,7 @@ object FormDisciplina: TFormDisciplina
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object PainelDisciplinas: TPanel
     Left = 56

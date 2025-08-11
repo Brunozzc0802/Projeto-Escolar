@@ -43,6 +43,7 @@ procedure TFormMain.btnDisciplinasClick(Sender: TObject);
 procedure TFormMain.btnEstudantesClick(Sender: TObject);
 begin
   FormEstudante.Show;
+  DM.CarregarTudo;
 end;
 
 procedure TFormMain.btnMatriculasClick(Sender: TObject);
@@ -61,13 +62,8 @@ procedure TFormMain.btnTurmasClick(Sender: TObject);
   end;
 
 procedure TFormMain.FormCreate(Sender: TObject);
-begin
-  try
+  begin
     DM.CarregarTudo;
-  except
-    on E: Exception do
-      ShowMessage('Erro ao carregar dados: ' + E.Message);
   end;
-end;
 end.
 

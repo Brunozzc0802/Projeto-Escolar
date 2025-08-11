@@ -10,6 +10,7 @@ object FormTurma: TFormTurma
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object PainelTurmas: TPanel
     Left = 56
