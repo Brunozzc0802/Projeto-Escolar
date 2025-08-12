@@ -131,7 +131,7 @@ procedure TFormDisciplina.btnAtualizarClick(Sender: TObject);
 procedure TFormDisciplina.btnBaixarArquivosClick(Sender: TObject);
   begin
     DM.SalvarTudo;
-    ShowMessage('Arquivos Baixados Com Sucesso');
+    ShowMessage('Arquivos Atualizados Com Sucesso');
   end;
 end.
 
