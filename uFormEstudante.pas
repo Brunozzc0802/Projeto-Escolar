@@ -53,12 +53,14 @@ procedure TFormEstudante.AtualizarGrid;
 var
 i: Integer;
   begin
+    // Define o número de linhas baseado na quantidade de estudantes + 1 (linha do cabeçalho)
     sgEstudantes.RowCount := DM.Estudantes.Count + 1;
     sgEstudantes.Cells[0,0] := 'Código Estudante';
     sgEstudantes.Cells[1,0] := 'Nome Estudante';
-    for i := 0 to DM.Estudantes.Count - 1 do
-    begin
-      sgEstudantes.Cells[0, i+1] := IntToStr(DM.Estudantes[i].Codigo);
+    // Loop para preencher as linhas com os dados
+    for i := 0 to DM.Estudantes.Count - 1 do begin
+      sgEstudantes.Cells[0, i+1] :=
+      IntToStr(DM.Estudantes[i].Codigo); //codigo convertido de integer para string
       sgEstudantes.Cells[1, i+1] := DM.Estudantes[i].Nome;
     end;
   end;
@@ -66,40 +68,39 @@ i: Integer;
 
 procedure TFormEstudante.btnAdicionarClick(Sender: TObject);
 var
-sCode, sName: string;
-code: Integer;
+  sName: string;
+  code: Integer;
+begin
+  // Se já houver estudantes, pega o último código e soma 1
+  if DM.Estudantes.Count > 0 then
+    code := DM.Estudantes[DM.Estudantes.Count - 1].Codigo + 1
+  else
+    code := 1; // Primeiro estudante começa do código 1
+
+  // Pede apenas o nome
+  sName := InputBox('Adicionar', 'Nome:', '');
+  if Trim(sName) = '' then
   begin
-      sCode := InputBox('Adicionar', 'Código:', '');
-    if sCode = '' then Exit;
-    if not TryStrToInt(sCode, code) then
-    begin
-      ShowMessage('Código do Estudante inválido');
-      Exit;
-    end;
-    if DM.CodigoEstudanteExiste(code) then
-    begin
-      ShowMessage('Código já está vinculado á um estudante');
-      Exit;
-    end;
-    sName := InputBox('Adicionar', 'Nome:', '');
-    if Trim(sName) = '' then
-    begin
-      ShowMessage('Nome do estudante é obrigatório');
-      Exit;
-    end;
-    DM.Estudantes.Add(TEstudante.Create(code, sName));
-    AtualizarGrid;
+    ShowMessage('Nome do estudante é obrigatório');
+    Exit;
   end;
+
+  // Adiciona à lista
+  DM.Estudantes.Add(TEstudante.Create(code, sName));
+
+  // Atualiza o grid
+  AtualizarGrid;
+end;
 
 procedure TFormEstudante.btnAtualizarClick(Sender: TObject);
   begin
-    DM.SalvarTudo;
+    DM.SalvarTudo; // atualizar arquivos novos
     ShowMessage('Arquivos Atualizados Com Sucesso');
   end;
 
 procedure TFormEstudante.btnBaixarArquivosClick(Sender: TObject);
   begin
-    DM.SalvarTudo;
+    DM.SalvarTudo; // baixar arquivos
     ShowMessage('Arquivos Baixados Com Sucesso');
   end;
 
@@ -107,13 +108,12 @@ procedure TFormEstudante.btnExcluirClick(Sender: TObject);
 var
 row, idx: Integer;
   begin
-    row := sgEstudantes.Row;
-    if row < 1 then
-    begin
+    row := sgEstudantes.Row;  // Obtém a linha selecionada no Grid
+    if row < 1 then begin  // Linha 0 é cabeçalho, então menor que 1 não é válido
       ShowMessage('Selecione um estudante para excluir.');
       Exit;
     end;
-    idx := row - 1;
+    idx := row - 1;    // -1 porque linha 0 é o cabeçalho
     if MessageDlg('Tem certeza que deseja excluir esse estudante?', mtConfirmation, [mbYes, mbNo], 0) = mrYes
     then begin
       DM.Estudantes.Delete(idx);
@@ -134,8 +134,7 @@ row, idx: Integer;
 newName: string;
   begin
     row := sgEstudantes.Row;
-    if row < 1 then
-    begin
+    if row < 1 then begin
       ShowMessage('Selecione um estudante para editar.');
       Exit;
     end;
@@ -143,13 +142,11 @@ newName: string;
     idx := row - 1;
 
     newName := InputBox('Editar', 'Nome:', DM.Estudantes[idx].Nome);
-    if Trim(newName) = '' then
-    begin
+    if Trim(newName) = '' then begin // verifica se o nome esta vazio
       ShowMessage('O Nome é obrigatório');
       Exit;
     end;
     DM.Estudantes[idx].Nome := newName;
-
     AtualizarGrid;
   end;
 end.

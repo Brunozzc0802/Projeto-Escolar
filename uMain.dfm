@@ -2,8 +2,8 @@ object FormMain: TFormMain
   Left = 61
   Top = 42
   Caption = 'FormMain'
-  ClientHeight = 428
-  ClientWidth = 475
+  ClientHeight = 436
+  ClientWidth = 479
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -39,8 +39,6 @@ object FormMain: TFormMain
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
-      ExplicitLeft = 44
-      ExplicitTop = 77
     end
     object btnEstudantes: TButton
       AlignWithMargins = True
@@ -166,7 +164,6 @@ object FormMain: TFormMain
       ParentFont = False
       TabOrder = 6
       OnClick = btnEncerrarSistemaClick
-      ExplicitTop = 394
     end
   end
 end

@@ -49,13 +49,13 @@ object FormDisciplina: TFormDisciplina
         24
         24)
     end
-    object Panel1: TPanel
+    object PainelBotoes: TPanel
       Left = 703
       Top = 64
       Width = 162
       Height = 345
       TabOrder = 2
-      object BitBtn1: TBitBtn
+      object btnAdicionar: TBitBtn
         AlignWithMargins = True
         Left = 11
         Top = 21
@@ -70,7 +70,7 @@ object FormDisciplina: TFormDisciplina
         TabOrder = 0
         OnClick = btnAdicionarClick
       end
-      object BitBtn2: TBitBtn
+      object btnEditar: TBitBtn
         AlignWithMargins = True
         Left = 11
         Top = 71
@@ -85,7 +85,7 @@ object FormDisciplina: TFormDisciplina
         TabOrder = 1
         OnClick = btnEditarClick
       end
-      object BitBtn3: TBitBtn
+      object btnExcluir: TBitBtn
         AlignWithMargins = True
         Left = 11
         Top = 171
@@ -100,7 +100,7 @@ object FormDisciplina: TFormDisciplina
         TabOrder = 2
         OnClick = btnExcluirClick
       end
-      object BitBtn4: TBitBtn
+      object btnAtualizar: TBitBtn
         AlignWithMargins = True
         Left = 11
         Top = 121
@@ -115,7 +115,7 @@ object FormDisciplina: TFormDisciplina
         TabOrder = 3
         OnClick = btnAtualizarClick
       end
-      object BitBtn5: TBitBtn
+      object btnBaixarArquivos: TBitBtn
         AlignWithMargins = True
         Left = 11
         Top = 221

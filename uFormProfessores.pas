@@ -12,12 +12,12 @@ type
     PainelProfessor: TPanel;
     MenuProfessor: TStaticText;
     sgProfessores: TStringGrid;
-    Panel1: TPanel;
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
-    BitBtn4: TBitBtn;
-    BitBtn5: TBitBtn;
+    PainelBotoes: TPanel;
+    btnAdicionar: TBitBtn;
+    btnEditar: TBitBtn;
+    btnExcluir: TBitBtn;
+    btnAtualizar: TBitBtn;
+    btnBaixarArquivos: TBitBtn;
     btnVoltar: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure btnAdicionarClick(Sender: TObject);
@@ -71,8 +71,7 @@ i: Integer;
     sgProfessores.Cells[0,0] := 'Código';
     sgProfessores.Cells[1,0] := 'Nome';
     sgProfessores.Cells[2,0] := 'CPF';
-    for i := 0 to DM.Professores.Count - 1 do
-    begin
+    for i := 0 to DM.Professores.Count - 1 do begin
       sgProfessores.Cells[0, i+1] := IntToStr(DM.Professores[i].Codigo);
       sgProfessores.Cells[1, i+1] := DM.Professores[i].Nome;
       sgProfessores.Cells[2, i+1] := DM.Professores[i].CPF;
@@ -81,39 +80,39 @@ i: Integer;
 
 procedure TFormProfessor.btnAdicionarClick(Sender: TObject);
 var
-sCode, sName, sCPF: string;
-code: Integer;
+  sName, sCPF: string;
+  code: Integer;
+begin
+  // Gera o código automaticamente
+  if DM.Professores.Count > 0 then
+    code := DM.Professores[DM.Professores.Count - 1].Codigo + 1
+  else
+    code := 1;
+
+  // Pede o nome
+  sName := InputBox('Adicionar', 'Nome:', '');
+  if Trim(sName) = '' then
   begin
-    sCode := InputBox('Adicionar', 'Código:', '');
-    if sCode = '' then Exit;
-    if not TryStrToInt(sCode, code) then
-    begin
-      ShowMessage('Código inválido.');
-      Exit;
-    end;
-    if DM.CodigoProfessorExiste(code) then
-    begin
-      ShowMessage('Código já existe.');
-      Exit;
-    end;
-
-    sName := InputBox('Adicionar', 'Nome:', '');
-    if Trim(sName) = '' then
-    begin
-      ShowMessage('Nome obrigatório.');
-      Exit;
-    end;
-
-    repeat
-      sCPF := InputBox('Adicionar', 'CPF', '');
-      if sCPF = '' then Exit;
-      if CPFValido(sCPF) then Break
-      else ShowMessage('CPF inválido. Deve conter exatamente 11 números.');
-    until False;
-
-    DM.Professores.Add(TProfessor.Create(code, sName, sCPF));
-    AtualizarGrid;
+    ShowMessage('Nome obrigatório.');
+    Exit;
   end;
+
+  // Pede CPF até ser válido ou cancelar
+  repeat
+    sCPF := InputBox('Adicionar', 'CPF:', '');
+    if sCPF = '' then Exit;
+    if CPFValido(sCPF) then
+      Break
+    else
+      ShowMessage('CPF inválido. Deve conter exatamente 11 números.');
+  until False;
+
+  // Adiciona à lista
+  DM.Professores.Add(TProfessor.Create(code, sName, sCPF));
+
+  // Atualiza o grid
+  AtualizarGrid;
+end;
 
 procedure TFormProfessor.btnEditarClick(Sender: TObject);
 var
@@ -121,15 +120,13 @@ idx: Integer;
 newName, newCPF: string;
   begin
     idx := sgProfessores.Row - 1;
-    if (idx < 0) or (idx >= DM.Professores.Count) then
-    begin
+    if (idx < 0) or (idx >= DM.Professores.Count) then begin
       ShowMessage('Selecione um professor para editar.');
       Exit;
     end;
 
     newName := InputBox('Editar', 'Nome:', DM.Professores[idx].Nome);
-    if Trim(newName) = '' then
-    begin
+    if Trim(newName) = '' then begin
       ShowMessage('Nome obrigatório.');
       Exit;
     end;
@@ -151,8 +148,7 @@ var
   row, idx: Integer;
   begin
     row := sgProfessores.Row;
-    if row < 1 then
-    begin
+    if row < 1 then begin
       ShowMessage('Selecione um Professor(a) para excluir.');
       Exit;
     end;

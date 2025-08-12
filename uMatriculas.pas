@@ -11,12 +11,12 @@ type
   TFormMatriculas = class(TForm)
     sgMatriculas: TStringGrid;
      MenuMatriculas: TStaticText;
-    Panel1: TPanel;
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
-    BitBtn4: TBitBtn;
-    BitBtn5: TBitBtn;
+    PainelBotoes: TPanel;
+    btnAdicionar: TBitBtn;
+    btnEditar: TBitBtn;
+    btnExcluir: TBitBtn;
+    btnAtualizar: TBitBtn;
+    btnBaixarArquivos: TBitBtn;
     btnVoltar: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure btnAdicionarClick(Sender: TObject);
@@ -65,17 +65,14 @@ end;
 
 procedure TFormMatriculas.btnAdicionarClick(Sender: TObject);
 var
-  sCode, sCodTurma, sCodAluno: string;
+  sCodTurma, sCodAluno: string;
   code, codTurma, codAluno: Integer;
 begin
-  sCode := InputBox('Adicionar', 'Código Matrícula:', '');
-  if sCode = '' then Exit;
-
-  if not TryStrToInt(sCode, code) then
-  begin
-    ShowMessage('Código da matrícula inválido.');
-    Exit;
-  end;
+  // Código automático: próximo número após o último existente
+  if DM.Matriculas.Count = 0 then
+    code := 1
+  else
+    code := DM.Matriculas.Last.Codigo + 1;
 
   repeat
     sCodTurma := InputBox('Adicionar', 'Código Turma:', '');
@@ -112,6 +109,7 @@ begin
   DM.Matriculas.Add(TMatricula.Create(code, codTurma, codAluno));
   AtualizarGrid;
 end;
+
 
 
 procedure TFormMatriculas.btnEditarClick(Sender: TObject);

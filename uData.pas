@@ -14,7 +14,7 @@ type
     FTurmas: TObjectList<TTurma>;
     FMatriculas: TObjectList<TMatricula>;
     function GetAppPath: string;
-  public
+    public
     constructor Create;
     destructor Destroy; override;
 
@@ -41,42 +41,42 @@ implementation
 { TDataModuleSimple }
 
 constructor TDataModuleSimple.Create;
-begin
-  FEstudantes := TObjectList<TEstudante>.Create(True);
-  FProfessores := TObjectList<TProfessor>.Create(True);
-  FDisciplinas := TObjectList<TDisciplina>.Create(True);
-  FTurmas := TObjectList<TTurma>.Create(True);
-  FMatriculas := TObjectList<TMatricula>.Create(True);
-end;
+  begin
+    FEstudantes := TObjectList<TEstudante>.Create(True);
+    FProfessores := TObjectList<TProfessor>.Create(True);
+    FDisciplinas := TObjectList<TDisciplina>.Create(True);
+    FTurmas := TObjectList<TTurma>.Create(True);
+    FMatriculas := TObjectList<TMatricula>.Create(True);
+  end;
 
 destructor TDataModuleSimple.Destroy;
-begin
-  FMatriculas.Free;
-  FTurmas.Free;
-  FDisciplinas.Free;
-  FProfessores.Free;
-  FEstudantes.Free;
-  inherited;
-end;
+  begin
+    FMatriculas.Free;
+    FTurmas.Free;
+    FDisciplinas.Free;
+    FProfessores.Free;
+    FEstudantes.Free;
+    inherited;
+  end;
 
 function TDataModuleSimple.GetAppPath: string;
-begin
-  Result := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0)));
-end;
+  begin
+    Result := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0)));
+  end;
 
 procedure TDataModuleSimple.SalvarTudo;
 var
   sl: TStringList;
   i: Integer;
-begin
-  sl := TStringList.Create;
-  try
-    for i := 0 to FEstudantes.Count - 1 do
-    sl.Add(FEstudantes[i].ToCSV);
-    sl.SaveToFile(GetAppPath + 'estudantes.txt', TEncoding.UTF8);
-  finally
-    sl.Free;
-  end;
+  begin
+    sl := TStringList.Create;
+    try
+      for i := 0 to FEstudantes.Count - 1 do
+      sl.Add(FEstudantes[i].ToCSV);
+      sl.SaveToFile(GetAppPath + 'estudantes.txt', TEncoding.UTF8);
+    finally
+      sl.Free;
+    end;
 
   begin
     sl := TStringList.Create;
@@ -221,12 +221,12 @@ end;
 function TDataModuleSimple.CodigoEstudanteExiste(Codigo: Integer): Boolean;
 var
   i: Integer;
-begin
-  Result := False;
-  for i := 0 to FEstudantes.Count - 1 do
-    if FEstudantes[i].Codigo = Codigo then
-      Exit(True);
-end;
+  begin
+    Result := False;
+    for i := 0 to FEstudantes.Count - 1 do
+      if FEstudantes[i].Codigo = Codigo then
+        Exit(True);
+  end;
 
 function TDataModuleSimple.CodigoProfessorExiste(Codigo: Integer): Boolean;
 var
@@ -251,12 +251,12 @@ end;
 function TDataModuleSimple.CodigoTurmaExiste(Codigo: Integer): Boolean;
 var
   i: Integer;
-begin
-  Result := False;
-  for i := 0 to FTurmas.Count - 1 do
-    if FTurmas[i].Codigo = Codigo then
-      Exit(True);
-end;
+  begin
+    Result := False;
+    for i := 0 to FTurmas.Count - 1 do
+      if FTurmas[i].Codigo = Codigo then
+        Exit(True);
+  end;
 
 initialization
   DM := TDataModuleSimple.Create;

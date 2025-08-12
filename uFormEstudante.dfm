@@ -71,9 +71,6 @@ object FormEstudante: TFormEstudante
         Caption = 'Adicionar'
         TabOrder = 0
         OnClick = btnAdicionarClick
-        ExplicitLeft = -93
-        ExplicitTop = 186
-        ExplicitHeight = 31
       end
       object btnEditar: TBitBtn
         AlignWithMargins = True
@@ -89,9 +86,6 @@ object FormEstudante: TFormEstudante
         Caption = 'Editar'
         TabOrder = 1
         OnClick = btnEditarClick
-        ExplicitLeft = -61
-        ExplicitTop = 21
-        ExplicitHeight = 43
       end
       object btnExcluir: TBitBtn
         AlignWithMargins = True
@@ -107,9 +101,6 @@ object FormEstudante: TFormEstudante
         Caption = 'Excluir'
         TabOrder = 2
         OnClick = btnExcluirClick
-        ExplicitLeft = -29
-        ExplicitTop = 121
-        ExplicitHeight = 43
       end
       object btnAtualizar: TBitBtn
         AlignWithMargins = True
@@ -125,9 +116,6 @@ object FormEstudante: TFormEstudante
         Caption = 'Atualizar'
         TabOrder = 3
         OnClick = btnAtualizarClick
-        ExplicitLeft = -77
-        ExplicitTop = 71
-        ExplicitHeight = 43
       end
       object btnBaixarArquivos: TBitBtn
         AlignWithMargins = True
@@ -143,9 +131,6 @@ object FormEstudante: TFormEstudante
         Caption = 'Baixar Arquivos'
         TabOrder = 4
         OnClick = btnBaixarArquivosClick
-        ExplicitLeft = -77
-        ExplicitTop = 171
-        ExplicitHeight = 43
       end
       object btnVoltar: TBitBtn
         AlignWithMargins = True
@@ -161,9 +146,6 @@ object FormEstudante: TFormEstudante
         Caption = 'Voltar Ao Menu'
         TabOrder = 5
         OnClick = btnVoltarClick
-        ExplicitLeft = -69
-        ExplicitTop = 221
-        ExplicitHeight = 43
       end
     end
   end

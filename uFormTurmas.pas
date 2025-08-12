@@ -67,26 +67,16 @@ end;
 
 procedure TFormTurma.btnAdicionarClick(Sender: TObject);
 var
-  sCode, sCodProf, sCodDisc: string;
+  sCodProf, sCodDisc: string;
   code, codProf, codDisc: Integer;
 begin
+  // Gera o próximo código automaticamente
+  if DM.Turmas.Count = 0 then
+    code := 1
+  else
+    code := DM.Turmas[DM.Turmas.Count - 1].Codigo + 1;
 
-  sCode := InputBox('Adicionar', 'Código Turma:', '');
-  if sCode = '' then Exit;
-
-  if not TryStrToInt(sCode, code) then
-  begin
-    ShowMessage('Código da turma inválido.');
-    Exit;
-  end;
-
-  if DM.CodigoTurmaExiste(code) then
-  begin
-    ShowMessage('Código já existe.');
-    Exit;
-  end;
-
-
+  // Pede e valida o código do professor
   repeat
     sCodProf := InputBox('Adicionar', 'Código Professor:', '');
     if sCodProf = '' then Exit;
@@ -103,7 +93,7 @@ begin
     Break;
   until False;
 
-
+  // Pede e valida o código da disciplina
   repeat
     sCodDisc := InputBox('Adicionar', 'Código Disciplina:', '');
     if sCodDisc = '' then Exit;
@@ -120,9 +110,11 @@ begin
     Break;
   until False;
 
+  // Adiciona a turma
   DM.Turmas.Add(TTurma.Create(code, codProf, codDisc));
   AtualizarGrid;
 end;
+
 
 procedure TFormTurma.btnEditarClick(Sender: TObject);
 var

@@ -12,12 +12,12 @@ type
   TFormDisciplina = class(TForm)
     sgDisciplinas: TStringGrid;
     MenuDisciplinas: TStaticText;
-    Panel1: TPanel;
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
-    BitBtn4: TBitBtn;
-    BitBtn5: TBitBtn;
+    PainelBotoes: TPanel;
+    btnAdicionar: TBitBtn;
+    btnEditar: TBitBtn;
+    btnExcluir: TBitBtn;
+    btnAtualizar: TBitBtn;
+    btnBaixarArquivos: TBitBtn;
     btnVoltar: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure btnAdicionarClick(Sender: TObject);
@@ -54,8 +54,7 @@ i: Integer;
     sgDisciplinas.RowCount := DM.Disciplinas.Count + 1;
     sgDisciplinas.Cells[0,0] := 'Código Disciplina';
     sgDisciplinas.Cells[1,0] := 'Nome Disciplina';
-    for i := 0 to DM.Disciplinas.Count - 1 do
-    begin
+    for i := 0 to DM.Disciplinas.Count - 1 do begin
       sgDisciplinas.Cells[0, i+1] := IntToStr(DM.Disciplinas[i].Codigo);
       sgDisciplinas.Cells[1, i+1] := DM.Disciplinas[i].Nome;
     end;
@@ -63,21 +62,24 @@ i: Integer;
 
 procedure TFormDisciplina.btnAdicionarClick(Sender: TObject);
 var
-sCode, sName: string;
-code: Integer;
-  begin
-    sCode := InputBox('Adicionar', 'Código:', '');
-    if not TryStrToInt(sCode, code) then Exit;
-    if DM.CodigoDisciplinaExiste(code) then
-    begin
-      ShowMessage('Código já está vinculado á uma disciplina');
-      Exit;
-    end;
+  sName: string;
+  nextCode: Integer;
+begin
+  // Gera o próximo código automaticamente
+  if DM.Disciplinas.Count = 0 then
+    nextCode := 1
+  else
+    nextCode := DM.Disciplinas[DM.Disciplinas.Count - 1].Codigo + 1;
 
-    sName := InputBox('Adicionar', 'Nome:', '');
-    DM.Disciplinas.Add(TDisciplina.Create(code, sName));
-    AtualizarGrid;
-  end;
+  // Pede apenas o nome
+  sName := InputBox('Adicionar', 'Nome:', '');
+
+  // Adiciona à lista
+  DM.Disciplinas.Add(TDisciplina.Create(nextCode, sName));
+
+  // Atualiza o grid
+  AtualizarGrid;
+end;
 
 procedure TFormDisciplina.btnEditarClick(Sender: TObject);
 var
@@ -85,8 +87,7 @@ idx: Integer;
 newName: string;
   begin
     idx := sgDisciplinas.Row - 1;
-    if (idx < 0) or (idx >= DM.Disciplinas.Count) then
-    begin
+    if (idx < 0) or (idx >= DM.Disciplinas.Count) then begin
       ShowMessage('Selecione uma discilina para editar.');
       Exit;
     end;
@@ -104,8 +105,7 @@ var
   row, idx: Integer;
   begin
     row := sgDisciplinas.Row;
-    if row < 1 then
-    begin
+    if row < 1 then begin
       ShowMessage('Selecione uma Disciplina para excluir.');
       Exit;
     end;
