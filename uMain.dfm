@@ -1,20 +1,21 @@
 object FormMain: TFormMain
-  Left = 0
-  Top = 0
+  Left = 61
+  Top = 42
   Caption = 'FormMain'
-  ClientHeight = 654
-  ClientWidth = 886
+  ClientHeight = 428
+  ClientWidth = 475
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesigned
   OnCreate = FormCreate
   TextHeight = 15
   object PainelInicial: TPanel
-    Left = 132
-    Top = 80
+    Left = -12
+    Top = 0
     Width = 489
     Height = 433
     Color = 15395562
@@ -38,6 +39,8 @@ object FormMain: TFormMain
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
+      ExplicitLeft = 44
+      ExplicitTop = 77
     end
     object btnEstudantes: TButton
       AlignWithMargins = True
@@ -146,24 +149,24 @@ object FormMain: TFormMain
     object btnEncerrarSistema: TBitBtn
       AlignWithMargins = True
       Left = 171
-      Top = 370
+      Top = 400
       Width = 147
       Height = 22
       Margins.Left = 170
-      Margins.Top = 280
+      Margins.Top = 310
       Margins.Right = 170
-      Margins.Bottom = 40
+      Margins.Bottom = 10
       Align = alClient
       Caption = 'Encerrar Sistema'
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
-      Font.Name = 'Tahoma'
+      Font.Name = 'Roboto'
       Font.Style = []
       ParentFont = False
       TabOrder = 6
       OnClick = btnEncerrarSistemaClick
-      ExplicitLeft = 163
+      ExplicitTop = 394
     end
   end
 end

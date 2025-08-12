@@ -1,8 +1,8 @@
 object FormDisciplina: TFormDisciplina
-  Left = 0
+  Left = 633
   Top = 0
   Caption = 'FormDisciplina'
-  ClientHeight = 714
+  ClientHeight = 423
   ClientWidth = 871
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -10,13 +10,14 @@ object FormDisciplina: TFormDisciplina
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesigned
   OnCreate = FormCreate
   TextHeight = 15
   object PainelDisciplinas: TPanel
-    Left = 56
-    Top = 32
-    Width = 713
-    Height = 561
+    Left = -8
+    Top = 0
+    Width = 881
+    Height = 425
     TabOrder = 0
     object MenuDisciplinas: TStaticText
       Left = 240
@@ -32,127 +33,118 @@ object FormDisciplina: TFormDisciplina
       ParentFont = False
       TabOrder = 0
     end
-    object PainelBotoes: TPanel
-      Left = 24
-      Top = 464
-      Width = 665
-      Height = 81
-      TabOrder = 1
-      object btnAdicionar: TButton
-        AlignWithMargins = True
-        Left = 16
-        Top = 16
-        Width = 138
-        Height = 49
-        Margins.Left = 15
-        Margins.Top = 15
-        Margins.Right = 510
-        Margins.Bottom = 15
-        Align = alClient
-        Caption = 'Adicionar'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -19
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 0
-        OnClick = btnAdicionarClick
-      end
-      object btnEditar: TButton
-        AlignWithMargins = True
-        Left = 176
-        Top = 16
-        Width = 138
-        Height = 49
-        Margins.Left = 175
-        Margins.Top = 15
-        Margins.Right = 350
-        Margins.Bottom = 15
-        Align = alClient
-        Caption = 'Editar'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -19
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 1
-        OnClick = btnEditarClick
-      end
-      object btnExcluir: TButton
-        AlignWithMargins = True
-        Left = 338
-        Top = 16
-        Width = 138
-        Height = 49
-        Margins.Left = 337
-        Margins.Top = 15
-        Margins.Right = 188
-        Margins.Bottom = 15
-        Align = alClient
-        Caption = 'Excluir'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -19
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 2
-        OnClick = btnExcluirClick
-      end
-      object btnAtualizar: TButton
-        AlignWithMargins = True
-        Left = 501
-        Top = 16
-        Width = 138
-        Height = 49
-        Margins.Left = 500
-        Margins.Top = 15
-        Margins.Right = 25
-        Margins.Bottom = 15
-        Align = alClient
-        Caption = 'Voltar'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -19
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 3
-        OnClick = btnAtualizarClick
-      end
-    end
     object sgDisciplinas: TStringGrid
       Left = 24
       Top = 64
       Width = 665
-      Height = 330
+      Height = 345
       Color = clMenu
       ColCount = 2
       DefaultColWidth = 330
       DefaultColAlignment = taCenter
       RowCount = 2
       FixedRows = 0
-      TabOrder = 2
+      TabOrder = 1
       RowHeights = (
         24
         24)
     end
-    object btnBaixarArquivos: TButton
-      Left = 24
-      Top = 408
-      Width = 665
-      Height = 41
-      Caption = 'Atualizar Arquivos'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Segoe UI'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 3
-      OnClick = btnBaixarArquivosClick
+    object Panel1: TPanel
+      Left = 703
+      Top = 64
+      Width = 162
+      Height = 345
+      TabOrder = 2
+      object BitBtn1: TBitBtn
+        AlignWithMargins = True
+        Left = 11
+        Top = 21
+        Width = 140
+        Height = 33
+        Margins.Left = 10
+        Margins.Top = 20
+        Margins.Right = 10
+        Margins.Bottom = 290
+        Align = alClient
+        Caption = 'Adicionar'
+        TabOrder = 0
+        OnClick = btnAdicionarClick
+      end
+      object BitBtn2: TBitBtn
+        AlignWithMargins = True
+        Left = 11
+        Top = 71
+        Width = 140
+        Height = 33
+        Margins.Left = 10
+        Margins.Top = 70
+        Margins.Right = 10
+        Margins.Bottom = 240
+        Align = alClient
+        Caption = 'Editar'
+        TabOrder = 1
+        OnClick = btnEditarClick
+      end
+      object BitBtn3: TBitBtn
+        AlignWithMargins = True
+        Left = 11
+        Top = 171
+        Width = 140
+        Height = 33
+        Margins.Left = 10
+        Margins.Top = 170
+        Margins.Right = 10
+        Margins.Bottom = 140
+        Align = alClient
+        Caption = 'Excluir'
+        TabOrder = 2
+        OnClick = btnExcluirClick
+      end
+      object BitBtn4: TBitBtn
+        AlignWithMargins = True
+        Left = 11
+        Top = 121
+        Width = 140
+        Height = 33
+        Margins.Left = 10
+        Margins.Top = 120
+        Margins.Right = 10
+        Margins.Bottom = 190
+        Align = alClient
+        Caption = 'Atualizar'
+        TabOrder = 3
+        OnClick = btnAtualizarClick
+      end
+      object BitBtn5: TBitBtn
+        AlignWithMargins = True
+        Left = 11
+        Top = 221
+        Width = 140
+        Height = 33
+        Margins.Left = 10
+        Margins.Top = 220
+        Margins.Right = 10
+        Margins.Bottom = 90
+        Align = alClient
+        Caption = 'Baixar Arquivos'
+        TabOrder = 4
+        OnClick = btnBaixarArquivosClick
+      end
+      object btnVoltar: TBitBtn
+        AlignWithMargins = True
+        Left = 11
+        Top = 271
+        Width = 140
+        Height = 33
+        Margins.Left = 10
+        Margins.Top = 270
+        Margins.Right = 10
+        Margins.Bottom = 40
+        Align = alClient
+        Caption = 'Voltar Ao Menu'
+        TabOrder = 5
+        OnClick = btnVoltarClick
+      end
     end
   end
 end

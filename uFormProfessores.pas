@@ -5,25 +5,27 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.StdCtrls,
-  Vcl.ExtCtrls, uData, uModels;
+  Vcl.ExtCtrls, uData, uModels, Vcl.Buttons;
 
 type
   TFormProfessor = class(TForm)
-    btnAdicionar: TButton;
-    btnEditar: TButton;
-    btnExcluir: TButton;
-    btnAtualizar: TButton;
-    btnBaixarArquivos: TButton;
     PainelProfessor: TPanel;
     MenuProfessor: TStaticText;
-    PainelBotoes: TPanel;
     sgProfessores: TStringGrid;
+    Panel1: TPanel;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
+    BitBtn5: TBitBtn;
+    btnVoltar: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure btnAdicionarClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
     procedure btnBaixarArquivosClick(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
   private
     procedure AtualizarGrid;
   public
@@ -156,15 +158,21 @@ var
     end;
     idx := row - 1;
      if MessageDlg('Tem certeza que deseja excluir esse(a) Professor(a)?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
-     ShowMessage('Professor(a) Excluído');
       DM.Professores.Delete(idx);
+      ShowMessage('Professor(a) Excluído');
       AtualizarGrid;
     end;
   end;
 
-procedure TFormProfessor.btnAtualizarClick(Sender: TObject);
+procedure TFormProfessor.btnVoltarClick(Sender: TObject);
   begin
     Close;
+  end;
+
+procedure TFormProfessor.btnAtualizarClick(Sender: TObject);
+  begin
+    DM.SalvarTudo;
+    ShowMessage('Arquivos Atualizados Com Sucesso');
   end;
 
 procedure TFormProfessor.btnBaixarArquivosClick(Sender: TObject);

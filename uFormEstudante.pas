@@ -5,25 +5,27 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.StdCtrls,
-  uData, uModels, Vcl.ExtCtrls;
+  uData, uModels, Vcl.ExtCtrls, Vcl.Buttons, Vcl.Imaging.jpeg;
 
 type
   TFormEstudante = class(TForm)
     sgEstudantes: TStringGrid;
-    btnAdicionar: TButton;
-    btnEditar: TButton;
-    btnExcluir: TButton;
-    btnAtualizar: TButton;
     PainelEstudante: TPanel;
     MenuEstudante: TStaticText;
-    PainelBotoes:TPanel;
-    btnBaixarArquivos: TButton;
+    PainelBotoes: TPanel;
+    btnAdicionar: TBitBtn;
+    btnEditar: TBitBtn;
+    btnExcluir: TBitBtn;
+    btnAtualizar: TBitBtn;
+    btnBaixarArquivos: TBitBtn;
+    btnVoltar: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure btnAdicionarClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnBaixarArquivosClick(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
   private
     procedure AtualizarGrid;
   public
@@ -46,6 +48,7 @@ procedure TFormEstudante.FormCreate(Sender: TObject);
     AtualizarGrid;
   end;
 
+
 procedure TFormEstudante.AtualizarGrid;
 var
 i: Integer;
@@ -59,6 +62,7 @@ i: Integer;
       sgEstudantes.Cells[1, i+1] := DM.Estudantes[i].Nome;
     end;
   end;
+
 
 procedure TFormEstudante.btnAdicionarClick(Sender: TObject);
 var
@@ -89,13 +93,14 @@ code: Integer;
 
 procedure TFormEstudante.btnAtualizarClick(Sender: TObject);
   begin
-    Close;
+    DM.SalvarTudo;
+    ShowMessage('Arquivos Atualizados Com Sucesso');
   end;
 
 procedure TFormEstudante.btnBaixarArquivosClick(Sender: TObject);
   begin
     DM.SalvarTudo;
-    ShowMessage('Arquivos Atualizados Com Sucesso');
+    ShowMessage('Arquivos Baixados Com Sucesso');
   end;
 
 procedure TFormEstudante.btnExcluirClick(Sender: TObject);
@@ -109,22 +114,19 @@ row, idx: Integer;
       Exit;
     end;
     idx := row - 1;
-    if MessageDlg('Tem certeza que deseja excluir esse estudante?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-    begin
-
-      var i: Integer;
-      for i := 0 to DM.Matriculas.Count - 1 do
-        if DM.Matriculas[i].CodigoEstudante = DM.Estudantes[idx].Codigo then
-        begin
-          ShowMessage('Não Foi Possivel excluir esse estudante: ele possui matrícula.');
-          Exit;
-        end;
-
+    if MessageDlg('Tem certeza que deseja excluir esse estudante?', mtConfirmation, [mbYes, mbNo], 0) = mrYes
+    then begin
       DM.Estudantes.Delete(idx);
+      ShowMessage('Estudante Excluído com sucesso');
       AtualizarGrid;
     end;
   end;
 
+
+procedure TFormEstudante.btnVoltarClick(Sender: TObject);
+  begin
+    Close;
+  end;
 
 procedure TFormEstudante.btnEditarClick(Sender: TObject);
 var

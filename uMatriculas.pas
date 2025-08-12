@@ -5,24 +5,26 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.StdCtrls,
-  Vcl.ExtCtrls, uData, uModels;
+  Vcl.ExtCtrls, uData, uModels, Vcl.Buttons;
 
 type
   TFormMatriculas = class(TForm)
     sgMatriculas: TStringGrid;
-    btnAdicionar: TButton;
-    btnEditar: TButton;
-    btnExcluir: TButton;
-    btnAtualizar: TButton;
-    PainelBotoes: TPanel;
      MenuMatriculas: TStaticText;
-    btnBaixarArquivos: TButton;
+    Panel1: TPanel;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
+    BitBtn5: TBitBtn;
+    btnVoltar: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure btnAdicionarClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
     procedure btnBaixarArquivosClick(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
   private
     procedure AtualizarGrid;
   public
@@ -171,15 +173,21 @@ var
     end;
     idx := row - 1;
      if MessageDlg('Tem Certeza Que deseja excluir essa Matricula?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
-     ShowMessage('Matricula Excluída');
-      DM.Professores.Delete(idx);
+      DM.Matriculas.Delete(idx);
+      ShowMessage('Matricula Excluída');
       AtualizarGrid;
     end;
   end;
 
+procedure TFormMatriculas.btnVoltarClick(Sender: TObject);
+  begin
+    Close;
+  end;
+
 procedure TFormMatriculas.btnAtualizarClick(Sender: TObject);
 begin
-  Close;
+   DM.SalvarTudo;
+   ShowMessage('Arquivos Atualizados Com Sucesso');
 end;
 
 procedure TFormMatriculas.btnBaixarArquivosClick(Sender: TObject);
