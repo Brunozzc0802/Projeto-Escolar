@@ -120,6 +120,14 @@ var
   sCodTurma, sCodAluno: string;
   codTurma, codAluno: Integer;
 begin
+
+  idx := sgMatriculas.Row - 1;
+    if (idx < 0) or (idx >= DM.Disciplinas.Count) then
+    begin
+      ShowMessage('Selecione uma Matricula para editar.');
+      Exit;
+    end;
+
   idx := sgMatriculas.Row - 1;
   if idx < 0 then Exit;
 

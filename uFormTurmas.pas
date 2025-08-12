@@ -129,11 +129,17 @@ var
   idx: Integer;
   sCodProf, sCodDisc: string;
   codProf, codDisc: Integer;
-begin
+  begin
+  idx := sgTurmas.Row - 1;
+    if (idx < 0) or (idx >= DM.Disciplinas.Count) then
+    begin
+      ShowMessage('Selecione uma Turma para editar.');
+      Exit;
+    end;
+
+
   idx := sgTurmas.Row - 1;
   if idx < 0 then Exit;
-
-
   repeat
     sCodProf := InputBox('Editar', 'Código Professor:', IntToStr(DM.Turmas[idx].CodigoProfessor));
     if sCodProf = '' then Exit;
