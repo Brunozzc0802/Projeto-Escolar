@@ -79,8 +79,7 @@ begin
 
   // Pede apenas o nome
   sName := InputBox('Adicionar', 'Nome:', '');
-  if Trim(sName) = '' then
-  begin
+  if Trim(sName) = '' then begin
     ShowMessage('Nome do estudante é obrigatório');
     Exit;
   end;

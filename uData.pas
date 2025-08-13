@@ -16,7 +16,6 @@ type
     function GetAppPath: string;
     public
     constructor Create;
-    destructor Destroy; override;
 
     property Estudantes: TObjectList<TEstudante> read FEstudantes;
     property Professores: TObjectList<TProfessor> read FProfessores;
@@ -49,33 +48,25 @@ constructor TDataModuleSimple.Create;
     FMatriculas := TObjectList<TMatricula>.Create(True);
   end;
 
-destructor TDataModuleSimple.Destroy;
-  begin
-    FMatriculas.Free;
-    FTurmas.Free;
-    FDisciplinas.Free;
-    FProfessores.Free;
-    FEstudantes.Free;
-    inherited;
-  end;
-
 function TDataModuleSimple.GetAppPath: string;
   begin
     Result := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0)));
-  end;
+  end;     //garante q termine /        //Remove nome so   //retorna
+                                       //fica com a pasta //caminho
 
 procedure TDataModuleSimple.SalvarTudo;
 var
   sl: TStringList;
   i: Integer;
   begin
-    sl := TStringList.Create;
+    sl := TStringList.Create; //cria para guardar as linhas
     try
-      for i := 0 to FEstudantes.Count - 1 do
-      sl.Add(FEstudantes[i].ToCSV);
+      for i := 0 to FEstudantes.Count - 1 do  //percorre linha
+      sl.Add(FEstudantes[i].ToCSV); //toCSV transforma obj em string para poder salvar
+                                    //adiciona a lista com o sl.add
       sl.SaveToFile(GetAppPath + 'estudantes.txt', TEncoding.UTF8);
     finally
-      sl.Free;
+      sl.Free; //libera a memoria
     end;
 
   begin

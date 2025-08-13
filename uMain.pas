@@ -40,10 +40,41 @@ implementation
 
 var Mudanca:Boolean = False;
 
+
+procedure TFormMain.FormCreate(Sender: TObject);
+  begin
+    DM.CarregarTudo;
+  end;
+
+
+procedure TFormMain.btnEstudantesClick(Sender: TObject);
+  begin
+    Mudanca := True;
+    FormEstudante.Show;
+  end;
+
+procedure TFormMain.btnProfessoresClick(Sender: TObject);
+  begin
+    Mudanca := True;
+    FormProfessor.Show;
+  end;
+
 procedure TFormMain.btnDisciplinasClick(Sender: TObject);
   begin
     Mudanca := True;
     FormDisciplina.Show;
+  end;
+
+procedure TFormMain.btnTurmasClick(Sender: TObject);
+  begin
+    Mudanca := True;
+    FormTurma.Show;
+  end;
+
+procedure TFormMain.btnMatriculasClick(Sender: TObject);
+  begin
+    Mudanca := True;
+    FormMatriculas.Show;
   end;
 
 
@@ -57,35 +88,6 @@ procedure TFormMain.btnEncerrarSistemaClick(Sender: TObject);
       end;
     end;
   Close;
-  end;
-
-procedure TFormMain.btnEstudantesClick(Sender: TObject);
-  begin
-    Mudanca := True;
-    FormEstudante.Show;
-  end;
-
-procedure TFormMain.btnMatriculasClick(Sender: TObject);
-  begin
-    Mudanca := True;
-    FormMatriculas.Show;
-  end;
-
-procedure TFormMain.btnProfessoresClick(Sender: TObject);
-  begin
-    Mudanca := True;
-    FormProfessor.Show;
-  end;
-
-procedure TFormMain.btnTurmasClick(Sender: TObject);
-  begin
-    Mudanca := True;
-    FormTurma.Show;
-  end;
-
-procedure TFormMain.FormCreate(Sender: TObject);
-  begin
-    DM.CarregarTudo;
   end;
 end.
 

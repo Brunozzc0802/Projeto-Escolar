@@ -76,15 +76,17 @@ implementation
 
 { TEstudante }
 
+
 constructor TEstudante.Create(ACodigo: Integer; const ANome: string);
 begin
   FCodigo := ACodigo;
   FNome := ANome;
 end;
 
+// Converte o objeto TEstudante para uma string no formato que será gravado no arquivo TXT
 function TEstudante.ToCSV: string;
 begin
-  Result := IntToStr(FCodigo) + '  |  ' + FNome;
+  Result := IntToStr(FCodigo) + '  |  ' + FNome;  //concatenação
 end;
 
 class function TEstudante.FromCSV(const S: string): TEstudante;
@@ -93,13 +95,19 @@ var
   c, i: Integer;
 begin
   parts := S.Split(['  |  ']);
+  // Se não tiver pelo menos 2 partes (código e nome), o formato está errado
   if Length(parts) < 2 then
     raise Exception.Create('Formato inválido Estudante');
+
   if not TryStrToInt(parts[0], c) then
     raise Exception.Create('Código inválido Estudante');
+
   i := c;
+
+  // Cria e retorna um novo objeto TEstudante usando o código (i) e o nome (parts[1])
   Result := TEstudante.Create(i, parts[1]);
 end;
+
 
 { TProfessor }
 
