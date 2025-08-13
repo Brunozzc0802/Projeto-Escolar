@@ -3,7 +3,7 @@ object FormMain: TFormMain
   Top = 42
   Caption = 'FormMain'
   ClientHeight = 433
-  ClientWidth = 477
+  ClientWidth = 577
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,7 +16,7 @@ object FormMain: TFormMain
   object PainelInicial: TPanel
     Left = -12
     Top = 0
-    Width = 489
+    Width = 589
     Height = 433
     Color = 15395562
     ParentBackground = False
@@ -25,7 +25,7 @@ object FormMain: TFormMain
       AlignWithMargins = True
       Left = 4
       Top = 21
-      Width = 481
+      Width = 581
       Height = 39
       Margins.Top = 20
       Margins.Bottom = 30
@@ -39,12 +39,13 @@ object FormMain: TFormMain
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
+      ExplicitWidth = 481
     end
     object btnEstudantes: TButton
       AlignWithMargins = True
       Left = 51
       Top = 93
-      Width = 387
+      Width = 487
       Height = 39
       Margins.Left = 50
       Margins.Right = 50
@@ -59,12 +60,13 @@ object FormMain: TFormMain
       ParentFont = False
       TabOrder = 1
       OnClick = btnEstudantesClick
+      ExplicitWidth = 387
     end
     object btnProfessores: TButton
       AlignWithMargins = True
       Left = 51
       Top = 145
-      Width = 387
+      Width = 487
       Height = 42
       Margins.Left = 50
       Margins.Top = 55
@@ -80,12 +82,13 @@ object FormMain: TFormMain
       ParentFont = False
       TabOrder = 2
       OnClick = btnProfessoresClick
+      ExplicitWidth = 387
     end
     object btnDisciplinas: TButton
       AlignWithMargins = True
       Left = 51
       Top = 200
-      Width = 387
+      Width = 487
       Height = 42
       Margins.Left = 50
       Margins.Top = 110
@@ -101,12 +104,13 @@ object FormMain: TFormMain
       ParentFont = False
       TabOrder = 3
       OnClick = btnDisciplinasClick
+      ExplicitWidth = 387
     end
     object btnTurmas: TButton
       AlignWithMargins = True
       Left = 51
       Top = 255
-      Width = 387
+      Width = 487
       Height = 42
       Margins.Left = 50
       Margins.Top = 165
@@ -122,12 +126,13 @@ object FormMain: TFormMain
       ParentFont = False
       TabOrder = 4
       OnClick = btnTurmasClick
+      ExplicitWidth = 387
     end
     object btnMatriculas: TButton
       AlignWithMargins = True
       Left = 51
       Top = 310
-      Width = 387
+      Width = 487
       Height = 42
       Margins.Left = 50
       Margins.Top = 220
@@ -143,12 +148,13 @@ object FormMain: TFormMain
       ParentFont = False
       TabOrder = 5
       OnClick = btnMatriculasClick
+      ExplicitWidth = 387
     end
     object btnEncerrarSistema: TBitBtn
       AlignWithMargins = True
       Left = 171
       Top = 400
-      Width = 147
+      Width = 247
       Height = 22
       Margins.Left = 170
       Margins.Top = 310
@@ -164,6 +170,7 @@ object FormMain: TFormMain
       ParentFont = False
       TabOrder = 6
       OnClick = btnEncerrarSistemaClick
+      ExplicitWidth = 147
     end
   end
 end

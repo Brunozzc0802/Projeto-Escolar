@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
   uFormEstudante, Vcl.ExtCtrls,uData,uFormProfessores,uDisciplinas,uFormTurmas,uMatriculas,
-  Vcl.Buttons, Vcl.Imaging.pngimage;
+  Vcl.Buttons;
 
 type
   TFormMain = class(TForm)
@@ -45,6 +45,7 @@ procedure TFormMain.FormCreate(Sender: TObject);
   begin
     DM.CarregarTudo;
   end;
+
 
 procedure TFormMain.btnEstudantesClick(Sender: TObject);
   begin

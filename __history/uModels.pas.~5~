@@ -94,8 +94,16 @@ var
   parts: TArray<string>;
   c, i: Integer;
 begin
+  parts := S.Split(['  |  ']);
+  // Se não tiver pelo menos 2 partes (código e nome), o formato está errado
+  if Length(parts) < 2 then
+    raise Exception.Create('Formato inválido Estudante');
+
   if not TryStrToInt(parts[0], c) then
     raise Exception.Create('Código inválido Estudante');
+
+  i := c;
+
   // Cria e retorna um novo objeto TEstudante usando o código (i) e o nome (parts[1])
   Result := TEstudante.Create(i, parts[1]);
 end;
@@ -119,6 +127,8 @@ class function TProfessor.FromCSV(const S: string): TProfessor;
 var parts: TArray<string>; c: Integer;
 begin
   parts := S.Split(['  |  ']);
+  if Length(parts) < 3 then
+    raise Exception.Create('Formato inválido Professor');
   if not TryStrToInt(parts[0], c) then
     raise Exception.Create('Código inválido Professor');
   Result := TProfessor.Create(c, parts[1], parts[2]);
@@ -141,6 +151,8 @@ class function TDisciplina.FromCSV(const S: string): TDisciplina;
 var parts: TArray<string>; c: Integer;
 begin
   parts := S.Split(['  |  ']);
+  if Length(parts) < 2 then
+    raise Exception.Create('Formato inválido Disciplina');
   if not TryStrToInt(parts[0], c) then
     raise Exception.Create('Código inválido Disciplina');
   Result := TDisciplina.Create(c, parts[1]);
@@ -165,6 +177,8 @@ var parts: TArray<string>; c, p, d: Integer;
 begin
   parts := S.Split(['  |  ']);
   if Length(parts) < 3 then
+    raise Exception.Create('Formato inválido Turma');
+  if not TryStrToInt(parts[0], c) then raise Exception.Create('Código inválido Turma');
   if not TryStrToInt(parts[1], p) then raise Exception.Create('Código Professor inválido Turma');
   if not TryStrToInt(parts[2], d) then raise Exception.Create('Código Disciplina inválido Turma');
   Result := TTurma.Create(c, p, d);
@@ -190,8 +204,11 @@ var parts: TArray<string>; c, t, a: Integer;
 begin
   parts := S.Split(['  |  ']);
   if Length(parts) < 3 then
+    raise Exception.Create('Formato inválido Matrícula');
+  if not TryStrToInt(parts[0], c) then raise Exception.Create('Código inválido Matrícula');
   if not TryStrToInt(parts[1], t) then raise Exception.Create('Código Turma inválido Matrícula');
   if not TryStrToInt(parts[2], a) then raise Exception.Create('Código Estudante inválido Matrícula');
   Result := TMatricula.Create(c, t, a);
 end;
+
 end.
